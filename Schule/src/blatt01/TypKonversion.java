@@ -23,5 +23,11 @@ public class TypKonversion {
         //b) Die Variablen hinter dem Konstrukt werden in den angegebenen Datentyp konvertiert
         //c) Werte eines Datentyps entsprechen als anderer Datentyp einen anderen Wert, so hat der double 14.3 als int den Wert 14
         //d) Jeder Integer entspricht einem bestimmten Character und jeder Character einem Integer-Wert, wobei die ASCII-Tabelle zur Zuweisung genutzt wird
+        //e)
+        /*
+        boolean t = true;
+        h = (char) t;
+        */
+        // Das Programm gibt einen Fehler aus, da Werten des Datentyps boolean keine char-Werte zugewiesen sind
     }
 }
