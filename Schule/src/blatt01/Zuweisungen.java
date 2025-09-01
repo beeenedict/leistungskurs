@@ -10,5 +10,7 @@ public class Zuweisungen {
         a /= 2;
         a -= 2*b;
         System.out.println(a);
+        // a) 6 Rechenoperatoren
+        // b) Der entstandene Term lässt sich zu a = 2 umformen
     }
 }

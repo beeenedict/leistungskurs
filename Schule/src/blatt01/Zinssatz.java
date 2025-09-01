@@ -5,12 +5,11 @@ public class Zinssatz {
         double kapital = 1220.0;
         double zinssatz = 2.25;
         double zinsen = kapital * zinssatz / 100;
-        double n_kapital = kapital + zinsen;
+        double neuesKapital = kapital + zinsen;
 
-        System.out.println("Altes Kapital: " + kapital + " €");
-        System.out.println("Zinssatz: " + zinssatz + " %\n");
-        //kapital += zinsen;
-        System.out.println("Zinsen: " + zinsen + " €");
-        System.out.println("Neues Kapital: " + n_kapital + " €"); // ... + kapital + ... (Startkapital nicht gespeichert)
+        System.out.printf("Altes Kapital: %.2f €%n", kapital);
+        System.out.printf("Zinssatz: %f %% %n%n", zinssatz);
+        System.out.printf("Zinsen: %.2f €%n", zinsen);
+        System.out.printf("Neues Kapital: %.2f €", neuesKapital); // ... + kapital + ... (Startkapital nicht gespeichert)
     }
 }
