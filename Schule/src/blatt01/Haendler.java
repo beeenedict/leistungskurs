@@ -2,18 +2,18 @@ package blatt01;
 
 public class Haendler {
     public static void main(String[] args) {
-        int anz_no_SD = 9;
-        int anz_mi_SD = 5;
-        int anz_mc_SD = 0;
-        double pr_no_SD = 5;
-        double pr_mi_SD = 8;
-        double pr_mc_SD = 12;
-        double gesamtpreis = pr_no_SD * anz_no_SD + pr_mi_SD * anz_mi_SD + pr_mc_SD * anz_mc_SD;
+        int normaleSDAnz = 9;
+        int miniSDAnz = 5;
+        int microSDAnz = 0;
+        double normaleSDPre = 5;
+        double miniSDPre = 8;
+        double microSDPre = 12;
+        double preisGesamt = normaleSDAnz * normaleSDPre + miniSDAnz * miniSDPre + microSDAnz * microSDPre;
         System.out.print("Der Preis für...\n"
-                + anz_no_SD + " normale SD-Karten\n"
-                + anz_mi_SD + " MiniSD-Karten\n"
-                + anz_mc_SD + " MicroSD-Karten\n"
-        + "...lautet " + gesamtpreis + " €");
+                + normaleSDAnz + " normale SD-Karten\n"
+                + miniSDAnz + " MiniSD-Karten\n"
+                + microSDAnz + " MicroSD-Karten\n"
+        + "...lautet " + preisGesamt + " €");
         //1. 7
         //2. int -> anzahl, double -> preis
         //3. negative Anzahlen, negative Preise
