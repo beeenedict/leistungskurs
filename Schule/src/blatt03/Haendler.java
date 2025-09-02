@@ -41,7 +41,7 @@ public class Haendler {
                 System.out.println("Die maximale Bestellmenge beträgt 50 MicroSD-Karten und wurde entsprechend angepasst.");
                 microSDAnz = 50;
             }
-            System.out.println("");
+            System.out.println(" ");
         }
 
         double normaleSDPre = 5.0;
@@ -50,7 +50,12 @@ public class Haendler {
         double preisGesamt = normaleSDAnz * normaleSDPre + miniSDAnz * miniSDPre + microSDAnz * microSDPre;
 
         // c)
-        if (normaleSDAnz + )
+        if (normaleSDAnz + miniSDAnz + microSDAnz > 15) {
+            System.out.println("Da Sie einen Einkauf von mehr als 15 Produkten tätigen, erhalten Sie einen Mengenrabat von 15% auf alle Artikel.");
+            System.out.println("Alter Preis: " + preisGesamt + " €");
+            preisGesamt *= 0.85;
+            System.out.println("Neuer Preis: " + preisGesamt + " €\n");
+        }
 
         System.out.println("Der Preis für...");
         System.out.println(normaleSDAnz + " normale SD-Karten");
