@@ -20,7 +20,7 @@ public class MinMax {
             System.out.println(zweiteZahl + " ist die größte Zahl");
         }
         else {
-            System.out.println(dritteZahl + " ist die größte Zahl");
+            System.out.println(dritteZahl + " ist die größte Zahl"); //... da weder 1 noch 2 größer sind
         }
         if (ersteZahl <= zweiteZahl && ersteZahl <= dritteZahl) {
             System.out.println(ersteZahl + " ist die kleinste Zahl");
@@ -29,7 +29,7 @@ public class MinMax {
             System.out.println(zweiteZahl + " ist die kleinste Zahl");
         }
         else {
-            System.out.println(dritteZahl + " ist die kleinste Zahl");
+            System.out.println(dritteZahl + " ist die kleinste Zahl"); //... da weder eins noch 2 kleiner sind
         }
     }
 }
