@@ -12,7 +12,7 @@ public class Notenrechner {
         System.out.println("Wie viele Punkte haben Sie erreicht?");
         double erreichtePunkte = input.nextDouble();
 
-        if (maximalePunkte == 15) { // MSS-Noten passen prozentual nicht in das Schema der MSS-Benotung, weshalb diese seperat zugewiesen bzw. angepasst werden, damit die note dennoch stimmt.
+        if (maximalePunkte == 15) { // MSS-Noten (0-15 MSS-Punkte) passen prozentual nicht in das Schema der MSS-Benotung, weshalb diese seperat zugewiesen bzw. angepasst werden, damit die note dennoch stimmt.
             System.out.println("Handelt es sich bei der Überprüfung um eine Kursarbeit bzw. wird sie nach MSS-Schema bewertet(15 = 1+, 14 = 1, 13 = 1-...)? (j/n)");
             char antwort = input.next().charAt(0);
             if (antwort == 'j' || antwort == 'J' ||  antwort == 'y' || antwort == 'Y') {
