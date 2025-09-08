@@ -5,7 +5,7 @@ public class ETF {
         double sparBetrag = 50;
         double gesamtBetrag = 0;
         double etfAnteil = 3578.89;
-        double anteil = 0;
+        double anteil;
         int monat = 0;
 
         while (monat < 12) {
