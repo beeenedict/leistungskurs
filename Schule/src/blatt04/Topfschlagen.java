@@ -8,51 +8,56 @@ public class Topfschlagen {
         Scanner input = new Scanner(System.in);
         Random random = new Random();
 
-        int topfx = random.nextInt(-100, 100);
-        int topfy = random.nextInt(-100, 100);
+        int feldGrenzex = 10;
+        int feldGrenzey = 10;
 
-        int playerx = random.nextInt(-100, 100);
-        int playery = random.nextInt(-100, 100);
+        int topfx = random.nextInt(-feldGrenzex, feldGrenzex);
+        int topfy = random.nextInt(-feldGrenzey, feldGrenzey);
 
-        System.out.println(topfx + " " + topfy + " " + playerx  + " " + playery);
+        int playerx = random.nextInt(-feldGrenzex, feldGrenzex);
+        int playery = random.nextInt(-feldGrenzey, feldGrenzey);
+
+        System.out.println(topfx + " " + topfy + " " + playerx + " " + playery);
 
         while (true) {
             char bewegung = input.next().charAt(0);
 
             if (bewegung == 'a') {
-                if (playery == -100) {
+                if (playery == -feldGrenzex) {
                     System.out.println("Sie können sich nicht außerhalb des Felds bewegen.");
-                }
-                else {
+                } else {
                     playerx--;
                 }
             } else if (bewegung == 'w') {
-                if (playerx == 100) {
+                if (playerx == feldGrenzey) {
                     System.out.println("Sie können sich nicht außerhalb des Felds bewegen.");
-                }
-                else {
+                } else {
                     playery++;
                 }
             } else if (bewegung == 's') {
-                if (playerx == -100) {
+                if (playerx == -feldGrenzey) {
                     System.out.println("Sie können sich nicht außerhalb des Felds bewegen.");
-                }
-                else {
+                } else {
                     playery--;
                 }
             } else if (bewegung == 'd') {
-                if (playery == 100) {
+                if (playery == feldGrenzex) {
                     System.out.println("Sie können sich nicht außerhalb des Felds bewegen.");
-                }
-                else {
+                } else {
                     playerx--;
                 }
             }
-            if (bewegung == 'a' ||  bewegung == 'd') {
-                if ((bewegung == 'a' && playery < topfy) || (bewegung == 'd' && playery > topfy)) {
+            if (bewegung == 'a' || bewegung == 'd') {
+                if ((bewegung == 'a' && playerx <= topfx) || (bewegung == 'd' && playerx >= topfx)) {
                     System.out.println("wärmer.");
+                } else {
+                    System.out.println("kälter.");
                 }
-                else {
+            }
+            if (bewegung == 'w' || bewegung == 's') {
+                if ((bewegung == 'w' && playery <= topfy) || (bewegung == 's' && playery >= topfy)) {
+                    System.out.println("wärmer.");
+                } else {
                     System.out.println("kälter.");
                 }
             }
