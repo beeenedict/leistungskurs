@@ -83,18 +83,26 @@ public class Topfschlagen {
                 zuege++;
                 if (zuege%5 == 0) {
                     topfMove = random.nextInt(1,5);
-                    System.out.println(topfMove); //TODO: nur wenn nicht außerhalb feld
+                    System.out.println(topfMove);
                     if (topfMove == 1) {
-                        topfy++;
+                        if (topfy < 100) {
+                            topfy++;
+                        }
                     }
                     else if (topfMove == 2) {
-                        topfx--;
+                        if (topfx > -100) {
+                            topfx--;
+                        }
                     }
                     else if (topfMove == 3) {
-                        topfy--;
+                        if (topfy > -100) {
+                            topfy--;
+                        }
                     }
                     else {
-                        topfx++;
+                        if (topfx < 100) {
+                            topfx++;
+                        }
                     }
                 }
 
