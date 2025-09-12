@@ -83,7 +83,7 @@ public class Topfschlagen {
                 zuege++;
                 if (zuege%5 == 0) {
                     topfMove = random.nextInt(1,5);
-                    System.out.println(topfMove);
+                //    System.out.println(topfMove);
                     if (topfMove == 1) {
                         if (topfy < 100) {
                             topfy++;
