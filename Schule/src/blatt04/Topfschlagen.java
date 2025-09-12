@@ -105,7 +105,6 @@ public class Topfschlagen {
                         }
                     }
                 }
-
             }
         }
         System.out.println("Sie haben gewonnen!");
