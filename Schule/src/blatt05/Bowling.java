@@ -1,4 +1,4 @@
-package blatt04;
+package blatt05;
 
 import java.util.Scanner;
 
@@ -14,10 +14,15 @@ public class Bowling {
         int treffer;
         int multi;
 
-        while (frames < 10) {
-            System.out.println("-- Frame " + (frames + 1) + " --\n");
+        while (frames < 11) {
+            if (frames != 10) {
+                System.out.println("\n-- Frame " + (frames + 1) + " --");
+            }
             pins = 10;
             wurf = 0;
+            if (frames == 10) {
+                wurf++;
+            }
             while (wurf < 2) {
                 if (multiplyer > 0) {
                     multiplyer--;
@@ -30,8 +35,17 @@ public class Bowling {
                 else {
                     multi = 1;
                 }
-                System.out.println("Wurf " + (wurf + 1) + ": Wieviele Pins haben Sie diesen Wurf umgeworfen? (0-10)");
+                if (frames == 10) {
+                    System.out.println("Wurf 3: Wieviele Pins haben Sie diesen Wurf umgeworfen? (0-10)");
+                }
+                else {
+                    System.out.println("Wurf " + (wurf + 1) + ": Wieviele Pins haben Sie diesen Wurf umgeworfen? (0-10)");
+                }
                 treffer = input.nextInt();
+                if (treffer < 0 || treffer > 10) {
+                    System.out.println("Bitte geben Sie eine ganze Zahl zwischen 0 und 10 ein.");
+                    treffer = input.nextInt();
+                }
                 pins -= treffer;
                 if (pins == 0 && wurf == 0) {
                     multiplyer += 3;
@@ -43,8 +57,13 @@ public class Bowling {
                 punkte += treffer *  multi;
                 wurf++;
             }
-            System.out.println("Punkte: " + punkte);
+            if (frames != 10) {
+                System.out.println("Punkte: " + punkte);
+            }
             frames++;
         }
+        System.out.println("------------------------");
+        System.out.println(" Erreichte Punkte: " + punkte);
+        System.out.println("------------------------");
     }
 }
