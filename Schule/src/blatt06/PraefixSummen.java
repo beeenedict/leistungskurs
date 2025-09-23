@@ -10,7 +10,7 @@ public class PraefixSummen {
 
         int n = input.nextInt();
 
-        double[] x = new double[n + 1];
+        double[] x = new double[n + 4];
         for (int i = 0; i < x.length; i++) {
             x[i] = rand.nextDouble();
         }
@@ -25,8 +25,8 @@ public class PraefixSummen {
         }
 
         double[] prae = new double[n];
-        prae[0] = 0;
-        for (int i = 1; i < prae.length; i++) {
+        for (int i = 0; i < prae.length; i++) {
+            prae[i] = 0;
             for (int j = 0; j < i; j++) {
                 prae[i] += x[j];
             }
