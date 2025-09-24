@@ -39,23 +39,29 @@ public class Wertetabelle {
         }
 
         System.out.println("In wie großen Schritten sollen die Werte angegeben werden?");
-        int s = input.nextInt();
+        double s = input.nextDouble();
         if (s <= 0) {
             System.out.println("Geben Sie für den Abstand zwischen ausgegebenen Werten bitte eine positive Zahl an.");
         }
 
-        double[] werte = new double[o - u + 1];
+        double[] stellen = new double[(int) ((o - u) / s) + 1];
+        for (int i = 0; i < stellen.length; i++) {
+            stellen[i] = i * s + u;
+            System.out.println(stellen[i]);
+        }
 
-        for (int i = 0; i < werte.length; i += s) {
+        double[] werte = new double[(int) ((o - u) / s) + 1];
+
+        for (int i = 0; i < werte.length; i ++) {
             werte[i] = 0;
             for (int j = 0; j < koeffizienten.length; j++) {
-                werte[i] += koeffizienten[j] * Math.pow(i + u, j);
+                werte[i] += koeffizienten[j] * Math.pow(stellen[i], j);
             }
             if (i + u < 1000 && i + u > -100) { // Stellen mit 6 oder weniger Ziffern (bzw. negative Stellen mit 5 oder weniger Ziffern) werden richtig eingerückt, bei hohen 7-stelligen Stellen wird das Integer-Limit zum Problem.
-                System.out.println(i + u + "\t\t" + werte[i]);
+                System.out.println(stellen[i] + "\t\t" + werte[i]);//TODO: printf formatierung
             }
             else {
-                System.out.println(i + u + "\t" + werte[i]);
+                System.out.println(stellen[i] + "\t" + werte[i]);
             }
         }
     }
