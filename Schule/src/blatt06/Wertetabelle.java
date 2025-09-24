@@ -7,8 +7,8 @@ public class Wertetabelle {
         Scanner input = new Scanner(System.in);
 
         System.out.println("Geben Sie den Grad n ein, der zusammen mit den Koeffizienten (an - a0) die Funktion definieren:");
-        int n = input.nextInt();
-        String formel = "";
+        int n = input.nextInt() + 1;
+        StringBuilder formel = new StringBuilder();
 
         double[] koeffizienten = new double[n];
 
@@ -18,12 +18,12 @@ public class Wertetabelle {
         }
 
         for (int i = 0; i < koeffizienten.length; i++) { // erstellen der Formel
-            formel += koeffizienten[n - (i + 1)] + "x^" + (n - (i + 1));
+            formel.append(koeffizienten[n - (i + 1)]).append("x^").append(n - (i + 1));
             if (i < n - 1) {
-                formel += " + ";
+                formel.append(" + ");
             }
         }
-        System.out.println("Das angegebene Polynom lautet: f(x) = " + formel); // In der ausgegebenen Formel werden Dezimalzahlen mit "." statt mit "," als Dezimaltrenner ausgegeben, da die doubles zum String addiert werden, dabei nicht angepasst und bei der Ausgabe entsprechend auch keine doubles mehr sind
+        System.out.println("Das angegebene Polynom lautet: f(x) = " + formel);
 
         System.out.println("\nAb welcher Stelle wollen Sie sich die Werte des Polynoms ausgeben lassen? (Untergrenze)");
         int u = input.nextInt();
@@ -45,23 +45,19 @@ public class Wertetabelle {
         }
 
         double[] stellen = new double[(int) ((o - u) / s) + 1];
-        for (int i = 0; i < stellen.length; i++) {
-            stellen[i] = i * s + u;
-            System.out.println(stellen[i]);
-        }
-
         double[] werte = new double[(int) ((o - u) / s) + 1];
 
         for (int i = 0; i < werte.length; i ++) {
+            stellen[i] = i * s + u;
             werte[i] = 0;
             for (int j = 0; j < koeffizienten.length; j++) {
                 werte[i] += koeffizienten[j] * Math.pow(stellen[i], j);
             }
-            if (i + u < 1000 && i + u > -100) { // Stellen mit 6 oder weniger Ziffern (bzw. negative Stellen mit 5 oder weniger Ziffern) werden richtig eingerückt, bei hohen 7-stelligen Stellen wird das Integer-Limit zum Problem.
-                System.out.println(stellen[i] + "\t\t" + werte[i]);//TODO: printf formatierung
+            if (stellen[i] <= 10000 && stellen[i] >= 1000) {
+                System.out.printf("%.2f\t\t%.2f%n", stellen[i], werte[i]);
             }
             else {
-                System.out.println(stellen[i] + "\t" + werte[i]);
+                System.out.printf("%.2f\t%.2f%n", stellen[i], werte[i]);
             }
         }
     }
