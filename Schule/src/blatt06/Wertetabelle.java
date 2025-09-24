@@ -60,4 +60,3 @@ public class Wertetabelle {
         }
     }
 }
-// 2h
