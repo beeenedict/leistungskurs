@@ -1,5 +1,7 @@
 package blatt06;
 
+// finale Abgabe
+
 import java.util.Scanner;
 
 public class Fibonacci {
@@ -8,7 +10,7 @@ public class Fibonacci {
 
         System.out.println("Geben Sie an, wieviele der ersten Zahlen der Fibonacci-Reihe Ihnen ausgegeben werden sollen.");
         int n = input.nextInt();
-        int[] fibonacci = new int[n];
+        double[] fibonacci = new double[n];
         if (fibonacci.length > 0) {
             fibonacci[0] = 0;
         }
@@ -20,11 +22,11 @@ public class Fibonacci {
         }
 
         for (int i = 0; i < fibonacci.length; i++) {
-            System.out.printf("%d ", fibonacci[i]);
+            System.out.printf("%.0f%n", fibonacci[i]);
         }
 
-        if (fibonacci.length > 1) {
-            double quotient = (double) fibonacci[n - 1] / fibonacci[n - 2];
+        if (fibonacci.length > 2) { // length = 2 -> dividieren durch 0
+            double quotient = fibonacci[n - 1] / fibonacci[n - 2];
             System.out.println("\n" + fibonacci[n-1] + " / " + fibonacci[n-2] + " = " + quotient);
         }
 

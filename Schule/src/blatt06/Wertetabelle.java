@@ -1,5 +1,7 @@
 package blatt06;
 
+// finale Abgabe
+
 import java.util.Scanner;
 
 public class Wertetabelle {
@@ -30,23 +32,23 @@ public class Wertetabelle {
         System.out.println("Bis zu welcher Stelle wollen Sie sich die Werte des Polynoms ausgeben lassen? (Obergrenze)");
         int o = input.nextInt();
 
-        while (u >= o) {
-            System.out.println("Bitte geben Sie eine Obergrenze an, die über der Untergrenze liegt.");
-            System.out.println("Untergrenze:");
-            u = input.nextInt();
-            System.out.println("Obergrenze:");
-            o = input.nextInt();
+        if (u > o) {
+            int x = u;
+            u = o;
+            o = x;
         }
 
         System.out.println("In wie großen Schritten sollen die Werte angegeben werden?");
-        double s = input.nextDouble();
-        if (s <= 0) {
-            System.out.println("Geben Sie für den Abstand zwischen ausgegebenen Werten bitte eine positive Zahl an.");
+        double s = Math.abs(input.nextDouble());
+        while (s == 0) {
+            System.out.println("Bitte geben Sie für die Schrittgröße nicht 0 ein!");
+            s  = input.nextDouble();
         }
 
         double[] stellen = new double[(int) ((o - u) / s) + 1];
         double[] werte = new double[(int) ((o - u) / s) + 1];
 
+        System.out.println("Stelle:\tWert:");
         for (int i = 0; i < werte.length; i ++) {
             stellen[i] = i * s + u;
             werte[i] = 0;
