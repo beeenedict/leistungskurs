@@ -104,7 +104,7 @@ public class ArbeitMitArrays {
 
     /**
      * Sind die Werte in aufsteigender Reihenfolge angeordnet
-     * @param array Array
+     * @param array int[] Array
      * @return Ja / Nein -> true / false
      */
 
@@ -119,7 +119,7 @@ public class ArbeitMitArrays {
 
     /**
      * Klont den angegebenen int[] Array
-     * @param array
+     * @param array int[] Array
      * @return int[] clone
      */
 
