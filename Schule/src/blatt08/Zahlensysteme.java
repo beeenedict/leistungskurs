@@ -52,7 +52,7 @@ public class Zahlensysteme {
             char[] chars = s.toCharArray();
             for (int i = 1; i < chars.length - 2; i++) {
                 if (chars[i] == '1') {
-                    dezimal += Math.pow(2, chars.length - i - 2);
+                    dezimal += Math.pow(2, chars.length - i - 3);
                 }
             }
         }
