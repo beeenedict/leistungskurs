@@ -43,8 +43,8 @@ public class Zahlensysteme { // TODO: Dokumentieren Prozeduren
         return true;
     }
 
-    public static int zuBinaer(String s){ // TODO: dezimal zu binär (Stringschreibweise, ()2), toUpperCase
-
+    public static String zuBinaer(String s){ // TODO: dezimal zu binär (Stringschreibweise, ()2), toUpperCase
+        return "aaaaaaaaaaaaaaa";
     }
 
     public static int zuDezimal(String s){
