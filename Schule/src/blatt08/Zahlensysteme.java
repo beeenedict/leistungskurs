@@ -1,6 +1,6 @@
 package blatt08;
 
-public class Zahlensysteme {
+public class Zahlensysteme { // TODO: Dokumentieren Prozeduren
 
     public static boolean istDezimal(String s){
         char[] ziffern = s.toCharArray();
@@ -43,6 +43,10 @@ public class Zahlensysteme {
         return true;
     }
 
+    public static int zuBinaer(String s){ // TODO: dezimal zu binär (Stringschreibweise, ()2), toUpperCase
+
+    }
+
     public static int zuDezimal(String s){
         int dezimal = 0;
         if (istDezimal(s)) {
@@ -57,7 +61,10 @@ public class Zahlensysteme {
             }
         }
 
-        //if (istHexadezimal(s)) {}
+        if (istHexadezimal(s)) {
+            s = zuBinaer(s);
+            zuDezimal(s);
+        }
 
         return dezimal;
     }
