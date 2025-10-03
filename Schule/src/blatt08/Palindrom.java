@@ -24,7 +24,7 @@ public class Palindrom {
      * @return ist ein Palindrom / ist kein Palindorm -> true / false
      */
 
-    public static boolean istPalindrom(String s){
+    public static boolean istPalindrom(String s) {
         return s.toLowerCase().equals(umdrehen(s.toLowerCase()));
     }
 }
