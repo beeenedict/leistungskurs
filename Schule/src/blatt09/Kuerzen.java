@@ -27,9 +27,10 @@ public class Kuerzen {
      */
 
     public static void kuerzen(int zaehler, int nenner) {
+        int[] teilerArr;
 
         while (istKuerzbar(zaehler, nenner)) {
-            int[] teilerArr = Teiler.teiler(zaehler);
+            teilerArr = Teiler.teiler(zaehler);
 
             for (int i = 1; i < teilerArr.length; i++) {
                 if (Teiler.istTeiler(nenner, teilerArr[i])) {

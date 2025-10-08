@@ -60,6 +60,7 @@ public class Primzahlen {
         System.out.print(a + " = ");
         while (!istPrim(a)) {
             teilerArr = Teiler.teiler(a);
+
             for (int i = 1; i < teilerArr.length; i++) {
                 if (istPrim(teilerArr[i])) {
                     System.out.print(teilerArr[i] + " * ");
