@@ -1,16 +1,16 @@
 package blatt10;
 
 public class Aufwand {
-    static int o;
-    static int b;
-    static int sp;
+    static int o = 0;
+    static int b = 0;
+    static int sp = 0;
 
     public static int zahlDerUmbrueche(char[] charr) {
         int count = 0;
         o++;
         sp += 32;
 
-        o += 2;
+        o++;
         sp += 32;
         for (int i = 0; i < charr.length-1; i++) {
             b++;
@@ -18,7 +18,6 @@ public class Aufwand {
 
             if (charr[i] == '.') {
                 if (charr[i+1] == ' ') {
-                    o++;
                     count++;
                     o += 2;
                 }
@@ -42,7 +41,6 @@ public class Aufwand {
         o += 5;
         while (c > 0) {
             b++;
-            o++;
 
             o++;
             sp += 32;
@@ -92,4 +90,15 @@ public class Aufwand {
 
         System.out.println(o + " Operationen, " + b + " Bedingungen, " + sp + " Bit Speicher");
     }
+
+    /*
+
+    d)
+        Das Programm ist stabil.
+
+    e)
+        Für
+
+     */
+
 }
