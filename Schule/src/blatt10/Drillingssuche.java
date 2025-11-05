@@ -2,6 +2,14 @@ package blatt10;
 
 public class Drillingssuche {
 
+    /**
+     * Überprüft, ob drei gegebene Arrays mindestens einen gleichen Wert enthalten
+     * @param arr1 int[]
+     * @param arr2 int[]
+     * @param arr3 int[]
+     * @return boolean
+     */
+
     public static int findeDrilling(int[] arr1, int[] arr2,  int[] arr3) {
         int drilling = -10000;
 

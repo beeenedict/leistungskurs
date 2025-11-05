@@ -4,6 +4,13 @@ public class BinaereSuche {
     static int o = 0;
     static int b = 0;
 
+    /**
+     * Überprüft mit binaerem Suchverfahren, ob die Zahl n im gegebenen Array enthalten ist.
+     * @param arr int[]
+     * @param n int
+     * @return boolean
+     */
+
     public static boolean binaerSuchen(int[] arr, int n) {
         int l = 0;
         int r = arr.length - 1;

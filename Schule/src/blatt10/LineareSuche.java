@@ -4,6 +4,13 @@ public class LineareSuche {
     static int bedingungen = 0;
     static int operationen = 0;
 
+    /**
+     * Überprüft mit linearem Suchverfahren, ob die Zahl n im gegebenen Array enthalten ist.
+     * @param arr int[]
+     * @param n int
+     * @return boolean
+     */
+
     public static boolean suchen(int[] arr, int n) {
 
         operationen++;
