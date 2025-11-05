@@ -75,7 +75,7 @@ public class Primzahlen {
     /*
     public static void main(String[] args) {
         System.out.println(istPrim(11223));
-        ArbeitMitArrays.printArray(generierePrimzahlen(1));
+        blatt07.ArbeitMitArrays.printArray(generierePrimzahlen(100));
         primfaktorzerlegung(11);
     }
      */
