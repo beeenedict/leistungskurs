@@ -177,7 +177,7 @@ public class DNA {
     public static String zuDNA_Bool(boolean[] nukleotidsequenz) {
         StringBuilder dna = new StringBuilder();
 
-        for (int i = 0; i < nukleotidsequenz.length; i++) {
+        for (int i = 0; i < nukleotidsequenz.length - 1; i += 2) {
 
             if (!nukleotidsequenz[i] && !nukleotidsequenz[i + 1]) {
                 dna.append('A');
@@ -211,21 +211,65 @@ public class DNA {
 
      */
 
+    /**
+     * Wandelt den übergebenen String nach den vorgegebenen Regeln in einen byte-Array um, wenn dieser in korrekter Nukleotidsequenz vorliegt, eine Stelle entsprechen 2 Nukleotidpaaren.
+     * @param nukleotidsequenz String
+     * @return byte[]
+     */
+
     public static byte[] zuDNA_effizient(String nukleotidsequenz) {
+
         if (istDNA(nukleotidsequenz) && nukleotidsequenz.length()%4 == 0) {
             byte[] dna = zuDNA(nukleotidsequenz);
             byte[] dnaEffizient = new byte[dna.length / 4];
 
             for (int i = 0; i < dna.length / 4; i++) {
-                dnaEffizient[i] = (byte) (dna[4 * i] + dna[4 * i + 1] * 4 + dna[4 * i + 2] * 16 + dna[4 * i + 3] * 64 - 128);
+                dnaEffizient[i] = (byte) (dna[4 * i + 3] + dna[4 * i + 2] * 4 + dna[4 * i + 1] * 16 + dna[4 * i] * 64 - 128);
             }
             return dnaEffizient;
         }
         return null;
     }
 
-    public static String zuDNA_effizient(byte[] nukleotidsequenz) {
+    /**
+     * Wandelt den übergebenen byte-Array nach den vorgegebenen Regeln in einen String um, wenn dieser in korrekter Nukleotidsequenz (eine stelle entsprciht 2 Nukleotidpaaren) vorliegt.
+     * @param nukleotidsequenz byte[]
+     * @return String
+     */
 
+    public static String zuDNA_effizient(byte[] nukleotidsequenz) {
+        StringBuilder dnaStr = new StringBuilder();
+        int x;
+        int y;
+        byte[] dna = new byte[4 * nukleotidsequenz.length];
+
+        for (int i = 0; i < nukleotidsequenz.length; i++) {
+            x = nukleotidsequenz[i] + 128;
+            y = 128;
+            for (int j = 0; j < 8; j++) {
+                if (x >= y) {
+                    x -= y;
+                    dna[4 * i + (int) (j / 2)]++;
+                    if (j %2 == 0) {
+                        dna[4 * i + (int) (j / 2)]++;
+                    }
+                }
+                y /= 2;
+            }
+        }
+
+        for (byte b : dna) {
+            switch (b) {
+                case 0: dnaStr.append("A"); break;
+                case 1: dnaStr.append("T"); break;
+                case 2: dnaStr.append("G"); break;
+                default: dnaStr.append("C"); break;
+            }
+        }
+
+        if (istDNA(dnaStr.toString())) {
+            return dnaStr.toString();
+        }
         return null;
     }
 
@@ -238,11 +282,19 @@ public class DNA {
 
      */
 
+    /*
     public static void main(String[] args) {
-        String dna = "ATTA";
+        String dna = "TATAGCAT";
         System.out.println(istDNA(dna));
-        System.out.println(Arrays.toString(zuDNA(dna)));
+        System.out.println();
         System.out.println(zuDNA(zuDNA(dna)));
+        System.out.println(Arrays.toString(zuDNA(dna)));
+        System.out.println();
+        System.out.println(zuDNA_Bool(zuDNA_Bool(dna)));
+        System.out.println(Arrays.toString(zuDNA_Bool(dna)));
+        System.out.println();
+        System.out.println(zuDNA_effizient(zuDNA_effizient(dna)));
         System.out.println(Arrays.toString(zuDNA_effizient(dna)));
     }
+     */
 }
