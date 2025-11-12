@@ -1,6 +1,6 @@
 package blatt10;
 
-import java.util.Arrays;
+//import java.util.Arrays;
 
 public class DNA {
 
@@ -250,7 +250,7 @@ public class DNA {
                 if (x >= y) {
                     x -= y;
                     dna[4 * i + (int) (j / 2)]++;
-                    if (j %2 == 0) {
+                    if (j%2 == 0) {
                         dna[4 * i + (int) (j / 2)]++;
                     }
                 }
