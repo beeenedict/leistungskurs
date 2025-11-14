@@ -15,7 +15,7 @@ public class SelectionSort {
 
             for (int i = arr.length - 1; i >= 0; i--) {
                 maxi = i;
-                for (int j = i; j >= 0; j--) {
+                for (int j = 0; j < i; j++) {
                     if (arr[j] > arr[maxi]) {
                         maxi = j;
                     }
