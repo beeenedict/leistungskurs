@@ -2,13 +2,37 @@ package blatt12;
 
 public class InsertionSort {
 
-    public static void main(String[] args) {
-        int[] arr = new int[]{110,10,1,100,1,7};
+    /**
+     * Sortiert einen gegebenen int-Array, indem die "richtige" Stelle eines Elements berechnet wird.
+     * @param arr int[]
+     * @return int[] sortiert
+     */
 
-        insertionSort(arr);
+    public static int[] insertionSort(int[] arr) {
+        int[] arrSortiert = new int[arr.length];
+        int element;
+        int count;
+
+        for (int i = 0; i < arr.length; i++) {
+            element = arr[i];
+            count = 0;
+            for (int j = 0; j < arr.length; j++) {
+                if (arr[j] < element) {
+                    count++;
+                }
+            }
+            arrSortiert[count] = element;
+        }
+
+        return arrSortiert;
     }
 
-    public static void insertionSort(int[] arr) {
+    /**
+     * Sortiert einen gegebenen int-Array, indem die "richtige" Stelle eines Elements berechnet wird, und der Rest des Arrays verschoben wird, um diesem platzzumachen.
+     * @param arr int[]
+     */
+
+    public static void insertionSortBetter(int[] arr) {
         int n = arr.length;
         int wert;
         int j;

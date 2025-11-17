@@ -30,7 +30,6 @@ public class BubbleSort {
                 }
             }
         }
-        System.out.println(blatt07.ArbeitMitArrays.istSortiert(arr));
     }
 
     /* d)
