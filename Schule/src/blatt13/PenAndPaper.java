@@ -84,11 +84,37 @@ public class PenAndPaper {
     }
 
     public static void meleeFight(Charakter A, Charakter B) {
-
+        Charakter a = A;
+        Charakter b = B;
+        int first = 0;
+        if (B.initiative < A.initiative) {
+            a = B;
+            b = A;
+            first = 1;
+        }
+        int angriff = 0;
+        boolean advantage;
+        boolean disadvantage;
+        while (b.hitPoints > 0) {
+            if (b.roundsAdvantage > 0) {
+                advantage = true;
+                b.roundsAdvantage--;
+            }
+            if (b.roundsAdvantage > 0) {
+                disadvantage = true;
+                b.roundsDisadvantage--;
+            }
+            angriff = angriff(b.damageN, b.damageX, a.armorClass, );
+            a.hitPoints -= angriff;
+            if (a.hitPoints <= 0) {
+                break;
+            }
+        }
     }
 
     public static void main(String[] args) {
-        Charakter Barbar = new Charakter("Barbar", 70, 14, 1, 1, 8, 0, 0, 3);
-        Charakter Barde = new Charakter("Barde", 42, 10, 2, 1, 6, 0, 3, 0);
+        Charakter Barbar = new Charakter("Barbar", 70, 14, 1, 1, 8, 0, 0, 3, 1);
+        Charakter Barde = new Charakter("Barde", 42, 10, 2, 1, 6, 0, 3, 0, 2);
+
     }
 }

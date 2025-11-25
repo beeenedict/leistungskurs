@@ -10,8 +10,9 @@ public class Charakter {
     int damageB;
     int roundsAdvantage;
     int roundsDisadvantage;
+    int initiative;
 
-    public Charakter(String name, int hitPoints, int armorClass, int attackB, int damageN, int damageX, int damageB, int roundsAdvantage, int roundsDisadvantage) {
+    public Charakter(String name, int hitPoints, int armorClass, int attackB, int damageN, int damageX, int damageB, int roundsAdvantage, int roundsDisadvantage, int initiative) {
         this.name = name;
         this.hitPoints = hitPoints;
         this.armorClass = armorClass;
@@ -21,5 +22,6 @@ public class Charakter {
         this.damageB = damageB;
         this.roundsAdvantage = roundsAdvantage;
         this.roundsDisadvantage = roundsDisadvantage;
+        this.initiative = initiative;
     }
 }

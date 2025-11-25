@@ -8,6 +8,7 @@ public class Umgebung {
      * @param g double Annäherungswert
      * @return int Exponent, -1 -> Fehler (b zu groß / klein)
      */
+
     public static int findeExponent(double b, double g) {
         if (0 < b && b < 1) {
             int exponent = 1;
