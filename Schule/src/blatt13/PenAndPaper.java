@@ -2,6 +2,13 @@ package blatt13;
 
 public class PenAndPaper {
 
+    /**
+     * Simuliert den Wurf von N X-seitigen Würfeln
+     * @param N int
+     * @param X int
+     * @return int Wurf
+     */
+
     public static int wuerfel(int N, int X) {
         int wert = 0;
 
@@ -11,9 +18,25 @@ public class PenAndPaper {
         return wert;
     }
 
+    /**
+     * Simuliert den Wurf von N X-seitigen Würfeln mit Bonus
+     * @param N int
+     * @param X int
+     * @param b int
+     * @return int Wurf
+     */
+
     public static int wuerfel(int N, int X, int b) {
         return wuerfel(N, X) + b;
     }
+
+    /**
+     * Führt einen d20 check durch und überprüft, ob dieser nach gegebenem difficulty bestanden wurde.
+     * @param difficulty int
+     * @param vor boolean
+     * @param nach boolean
+     * @return boolean
+     */
 
     public static boolean check(int difficulty, boolean vor, boolean nach) {
         int t1 = wuerfel(1, 20);
@@ -38,6 +61,15 @@ public class PenAndPaper {
 
         return t1 >= difficulty;
     }
+
+    /**
+     * Führt einen d20 check mit Bonus durch und überprüft, ob dieser nach gegebenem difficulty bestanden wurde.
+     * @param difficulty int
+     * @param vor boolean
+     * @param nach boolean
+     * @param b Bonus int
+     * @return boolean
+     */
 
     public static boolean check(int difficulty, boolean vor, boolean nach, int b) {
         int t1 = wuerfel(1, 20);
