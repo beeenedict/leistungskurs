@@ -8,5 +8,6 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="schisch_visualizer_neo1" level="project" />
+    <orderEntry type="library" name="schisch_visualizer_neo" level="project" />
   </component>
 </module>

@@ -8,7 +8,7 @@ public class SelectionSort {
      * @param max boolean Max- oder MinSort
      */
 
-    public static void Selectionsort(int[] arr, boolean max) {
+    public static void selectionsort(int[] arr, boolean max) {
 
         if (max) {
             int maxi;
