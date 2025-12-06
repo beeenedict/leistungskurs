@@ -2,6 +2,12 @@ package blatt13;
 
 public class MonteCarlo {
 
+    /**
+     * Berechnet den Anteil eines Kreises mit radius r an einer Fläche r^2 und somit eine Annäherung an Pi (/4).
+     * @param n double Nähe zu Pi
+     * @return double
+     */
+
     public static double piApproximation(double n){
         int drinnen = 0;
         int daneben = 0;

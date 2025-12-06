@@ -95,6 +95,17 @@ public class PenAndPaper {
         return t1 + b >= difficulty;
     }
 
+    /**
+     * Führt einen Nahkampfangriff durch und gibt den zugefügten Schaden zurück.
+     * @param N int
+     * @param X int
+     * @param enemyAC int
+     * @param vor boolean
+     * @param nach boolean
+     * @param atkB int
+     * @return int zugefügter Schaden
+     */
+
     public static int angriff(int N, int X, int enemyAC, boolean vor, boolean nach, int atkB) {
         boolean treffer = check(enemyAC, vor, nach, atkB);
         if (treffer) {
@@ -104,6 +115,18 @@ public class PenAndPaper {
             return 0;
         }
     }
+
+    /**
+     * Führt einen Nahkampfangriff mit Schadensbonus durch und gibt den zugefügten Schaden zurück.
+     * @param N int
+     * @param X int
+     * @param enemyAC int
+     * @param vor boolean
+     * @param nach boolean
+     * @param atkB int
+     * @param dmgB int
+     * @return int zugefügter Schaden
+     */
 
     public static int angriff(int N, int X, int enemyAC, boolean vor, boolean nach, int atkB, int dmgB) {
         boolean treffer = check(enemyAC, vor, nach, atkB);
@@ -115,6 +138,13 @@ public class PenAndPaper {
             return 0;
         }
     }
+
+    /**
+     * Simuliert ein Scharmützel zwischen zwei Charakteren und gibt den Charakter.name des Siegers aus.
+     * @param A Charakter
+     * @param B Charakter
+     * @return 1, 2 -> Charakter A, Charakter B -> Sieger
+     */
 
     public static int meleeFight(Charakter A, Charakter B) {
         Charakter[] charakters = new Charakter[2];
@@ -144,7 +174,7 @@ public class PenAndPaper {
 
                 if (charakters[Math.abs(i - 1)].hitPoints <= 0) {
                     System.out.println(charakters[i].name + " hat gewonnen!");
-                    return i;
+                    return i + 1;
                 }
                 advantage = false;
                 disadvantage = false;
@@ -158,7 +188,7 @@ public class PenAndPaper {
         for (int i = 0; i < 100; i++) {
             Charakter Barbar = new Charakter("Barbar", 70, 14, 1, 1, 8, 0, 0, 3, 1);
             Charakter Barde = new Charakter("Barde", 42, 18, 2, 1, 6, 0, 3, 0, 2);
-            barde += meleeFight(Barbar, Barde);
+            barde += meleeFight(Barbar, Barde) - 1;
         }
         System.out.println("Barde: " + barde);
         System.out.println("Barbar: " + (100 - barde));
