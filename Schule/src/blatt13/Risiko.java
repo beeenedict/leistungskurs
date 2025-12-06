@@ -3,7 +3,6 @@ package blatt13;
 import blatt12.InsertionSort;
 
 public class Risiko {
-
     /**
      * Führt einen Angriffswurf eine gegebene Anzahl oft aus und berechnet die Wahrscheinöichkeiten des Eintretens bestimmter Ausgänge
      * @param anzVersuche int
