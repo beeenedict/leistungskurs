@@ -4,11 +4,21 @@ import blatt13.Zufall;
 
 public class MultiArrays {
 
+    /**
+     * Ausgabe eines zweidimensionalen Int-Arrays
+     * @param arr int[][]
+     */
+
     public static void print2DArray(int[][] arr) {
         for (int i = 0; i < arr.length; i++) {
             blatt07.ArbeitMitArrays.printArray(arr[i]);
         }
     }
+
+    /**
+     * Ausgabe eines zweidimensionalen Double-Arrays
+     * @param arr double[][]
+     */
 
     public static void print2DArray(double[][] arr) {
         for (int i = 0; i < arr.length; i++) {
@@ -16,11 +26,25 @@ public class MultiArrays {
         }
     }
 
+    /**
+     * Ausgabe eines zweidimensionalen Char-Arrays
+     * @param arr char[][]
+     */
+
     public static void print2DArray(char[][] arr) {
         for (int i = 0; i < arr.length; i++) {
             blatt07.ArbeitMitArrays.printArray(arr[i]);
         }
     }
+
+    /**
+     * Erstellt einen zweidimensinalen Int-Array der Größe a x b und füllt ihn mit zufälligen Ganzzahlen zwischen p und q
+     * @param a int Breite
+     * @param b int Höhe
+     * @param p int untere Grenze
+     * @param q int obere Grenze
+     * @return 2D-Array
+     */
 
     public static int[][] createRandom2DIntArray(int a, int b, int p, int q) {
         int[][] arr = new int[a][b];
@@ -32,6 +56,13 @@ public class MultiArrays {
         return arr;
     }
 
+    /**
+     * Erstellt einen zweidimensinalen Double-Array der Größe a x b und füllt ihn mit zufälligen Gleitkommazahlen zwischen 0 und 1
+     * @param a int Breite
+     * @param b int Höhe
+     * @return 2D-Array
+     */
+
     public static double[][] createRandom2DDoubleArray(int a, int b) {
         double[][] arr = new double[a][b];
         for (int i = 0; i < a; i++) {
@@ -41,6 +72,13 @@ public class MultiArrays {
         }
         return arr;
     }
+
+    /**
+     * Erstellt einen zweidimensinalen Int-Array der Größe a x b und füllt ihn der Reihenfolge nach mit Ganzzahlen
+     * @param a int Breite
+     * @param b int Höhe
+     * @return 2D-Array
+     */
 
     public static int[][] createCountingArray(int a, int b) {
         int[][] arr = new int[a][b];
@@ -52,6 +90,13 @@ public class MultiArrays {
         return arr;
     }
 
+    /**
+     * Erstellt einen zweidimensinalen Char-Array der Größe a x b und füllt ihn mit Lehrzeichen
+     * @param a int Breite
+     * @param b int Höhe
+     * @return 2D-Array
+     */
+
     public static char[][] createEmpty2DCharArray(int a, int b) {
         char[][] arr = new char[a][b];
         for (int i = 0; i < a; i++) {
@@ -61,6 +106,13 @@ public class MultiArrays {
         }
         return arr;
     }
+
+    /**
+     * Überprüft ob zwei zweidimensionale Char-Arrays einander identisch sind.
+     * @param arr1 char[][]
+     * @param arr2 char[][]
+     * @return boolean
+     */
 
     public static boolean istIdentisch(char[][] arr1, char[][] arr2) {
         if (arr1.length != arr2.length) {
@@ -78,6 +130,13 @@ public class MultiArrays {
         }
         return true;
     }
+
+    /**
+     * Verschiebt alle Werte einer gegebenen Reihe eines 2D-Arrays um eine gegebene Anzahl nach rechts.
+     * @param arr char[][]
+     * @param row int
+     * @param offset int
+     */
 
     public static void shiftRows(char[][] arr, int row, int offset) {
 
