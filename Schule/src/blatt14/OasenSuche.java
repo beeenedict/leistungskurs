@@ -13,7 +13,7 @@ public class OasenSuche {
     public static void initialisiereSpielfeld(int a, int b) {
         if(spielfeld == null) {
             spielfeld = MultiArrays.createEmpty2DCharArray(a, b);
-            sv.step(spielfeld);
+            //sv.step(spielfeld);
         }
     }
 
@@ -22,7 +22,7 @@ public class OasenSuche {
             positionSpieler[0] = Zufall.zufallGanz(spielfeld.length);
             positionSpieler[1] = Zufall.zufallGanz(spielfeld[0].length);
             spielfeld[positionSpieler[0]][positionSpieler[1]] = 'P';
-            sv.step(spielfeld);
+            //sv.step(spielfeld);
         }
     }
 
@@ -58,7 +58,10 @@ public class OasenSuche {
         if (positionSpieler[0] < spielfeld.length - 1 && positionSpieler[0] > 0 && positionSpieler[1] < spielfeld[0].length - 1 && positionSpieler[1] > 0) {
             return spielfeld[positionSpieler[0] + 1][positionSpieler[1]] == '2' || spielfeld[positionSpieler[0] - 1][positionSpieler[1]] == '2' || spielfeld[positionSpieler[0]][positionSpieler[1] + 1] == '2' || spielfeld[positionSpieler[0] + 1][positionSpieler[1] - 1] == '2';
         }
-        else
+        else {
+
+        }
+        return false;
     }
 
     public static void findeWasser(int energie) {
