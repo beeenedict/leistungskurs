@@ -50,21 +50,18 @@ public class Simulationen {
         }
     }
 
-    public static char getNord(char[][] arr, int x, int y, boolean rand) {
+    public static char getNorden(char[][] arr, int x, int y, boolean rand) {
         y--;
         if (y < 0 && rand) {
-            y = arr.length;
+            y = arr.length - 1;
         }
         else if (y < 0) {
             return '-';
         }
-        else {
-            return arr[x][y];
-        }
-        return '-';
+        return arr[x][y];
     }
 
-    public static char getSued(char[][] arr, int x, int y, boolean rand) {
+    public static char getSueden(char[][] arr, int x, int y, boolean rand) {
         y++;
         if (y == arr.length && rand) {
             y = 0;
@@ -72,49 +69,122 @@ public class Simulationen {
         else if (y == arr.length) {
             return '-';
         }
-        else {
-            return arr[x][y];
-        }
-        return '-';
+        return arr[x][y];
     }
 
-    public static char getWest(char[][] arr, int x, int y, boolean rand) {
-        boolean amRand = x - 1 < 0;
-        if (rand && amRand) {
-            return arr[arr.length - 1][y];
+    public static char getWesten(char[][] arr, int x, int y, boolean rand) {
+        x--;
+        if (x < 0 && rand) {
+            x = arr.length - 1;
         }
-        else if (amRand) {
-            return ' ';
+        else if (x < 0) {
+            return '-';
         }
-        else {
-            return arr[x - 1][y];
-        }
+        return arr[x][y];
     }
 
-    public static char getEast(char[][] arr, int x, int y, boolean rand) {
-        boolean amRand = x + 1 == arr.length;
-        if (rand && amRand) {
-            return arr[0][y];
+    public static char getOsten(char[][] arr, int x, int y, boolean rand) {
+        x++;
+        if (x == arr.length && rand) {
+            x = 0;
         }
-        else if (amRand) {
-            return ' ';
+        else if (x == arr.length) {
+            return '-';
         }
-        else {
-            return arr[x + 1][y];
-        }
+        return arr[x][y];
     }
 
     public static char getNordWest(char[][] arr, int x, int y, boolean rand) {
-        boolean amRand = y - 1 < 0 || x - 1 < 0;
-        if (rand && amRand) {
-            return arr[x][arr.length - 1];
+        y--;
+        x--;
+        if ((x < 0 || y < 0) && !rand) {
+            return '-';
         }
-        else if (amRand) {
-            return ' ';
+        if (rand && x < 0) {
+            x = arr.length - 1;
         }
-        else {
-            return arr[x][y - 1];
+        if (rand && y < 0) {
+            y = arr.length - 1;
         }
+        return arr[x][y];
     }
 
+    public static char getNordOst(char[][] arr, int x, int y, boolean rand) {
+        y--;
+        x++;
+        if ((x == arr.length || y < 0) && !rand) {
+            return '-';
+        }
+        if (rand && x == arr.length) {
+            x = 0;
+        }
+        if (rand && y < 0) {
+            y = arr.length - 1;
+        }
+        return arr[x][y];
+    }
+
+    public static char getSuedOst(char[][] arr, int x, int y, boolean rand) {
+        y++;
+        x++;
+        if ((x == arr.length || y == arr.length) && !rand) {
+            return '-';
+        }
+        if (rand && x == arr.length) {
+            x = 0;
+        }
+        if (rand && y == arr.length) {
+            y = 0;
+        }
+        return arr[x][y];
+    }
+
+    public static char getSuedWest(char[][] arr, int x, int y, boolean rand) {
+        y++;
+        x--;
+        if ((x < 0 || y == arr.length) && !rand) {
+            return '-';
+        }
+        if (rand && x < 0) {
+            x = arr.length - 1;
+        }
+        if (rand && y == arr.length) {
+            y = 0;
+        }
+        return arr[x][y];
+    }
+
+    public static int zaehlenVier(char[][] arr, char n, int x, int y, boolean rand) {
+        int z = 0;
+        if (getNorden(arr, x, y, rand) == n) {
+            z++;
+        }
+        if (getSueden(arr, x, y, rand) == n) {
+            z++;
+        }
+        if (getWesten(arr, x, y, rand) == n) {
+            z++;
+        }
+        if (getOsten(arr, x, y, rand) == n) {
+            z++;
+        }
+        return z;
+    }
+
+    public static int zaehlenAcht(char[][] arr, char n, int x, int y, boolean rand) {
+        int z = zaehlenVier(arr, n, x, y, rand);
+        if (getNordWest(arr, x, y, rand) == n) {
+            z++;
+        }
+        if (getNordOst(arr, x, y, rand) == n) {
+            z++;
+        }
+        if (getSuedWest(arr, x, y, rand) == n) {
+            z++;
+        }
+        if (getSuedOst(arr, x, y, rand) == n) {
+            z++;
+        }
+        return z;
+    }
 }
