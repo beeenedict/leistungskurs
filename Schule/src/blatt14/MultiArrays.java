@@ -132,6 +132,22 @@ public class MultiArrays {
     }
 
     /**
+     * Kopiert einen gegebenen zweidimensionalen char-Array
+     * @param arr char[][]
+     * @return char[][]
+     */
+
+    public static char[][] copy2DcharArray(char[][] arr) {
+        char[][] charr = new char[arr.length][arr[0].length];
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = 0; j < arr[0].length; j++) {
+                charr[i][j] = arr[i][j];
+            }
+        }
+        return charr;
+    }
+
+    /**
      * Verschiebt alle Werte einer gegebenen Reihe eines 2D-Arrays um eine gegebene Anzahl nach rechts.
      * @param arr char[][]
      * @param row int
