@@ -111,7 +111,7 @@ public class OasenSuche {
     }
 
     public static void main(String[] args) {
-        int x = 100;
+        int x = 123;
         for (int i = 0; i < x; i++) {
             initialisiereSpielfeld(60, 60);
             zufallsPositionSpieler();
