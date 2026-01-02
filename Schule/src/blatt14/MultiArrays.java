@@ -148,6 +148,23 @@ public class MultiArrays {
     }
 
     /**
+     * Kopiert von einem gegebenen zweidimensionalen char-Array die ersten y Spalten
+     * @param arr char[][]
+     * @param y int
+     * @return char[][]
+     */
+
+    public static char[][] copy2DcharArrayRows(char[][] arr, int y) {
+        char[][] charr = new char[arr.length][y];
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = 0; j < y; j++) {
+                charr[i][j] = arr[i][j];
+            }
+        }
+        return charr;
+    }
+
+    /**
      * Verschiebt alle Werte einer gegebenen Reihe eines 2D-Arrays um eine gegebene Anzahl nach rechts.
      * @param arr char[][]
      * @param row int

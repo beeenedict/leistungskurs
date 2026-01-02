@@ -10,12 +10,22 @@ public class OasenSuche {
     static char[][] spielfeld;
     static int[] positionSpieler = new int[2];
 
+    /**
+     * Erstellt das Spielfeld mit den Maßen axb
+     * @param a int
+     * @param b int
+     */
+
     public static void initialisiereSpielfeld(int a, int b) {
         if(spielfeld == null) {
             spielfeld = MultiArrays.createEmpty2DCharArray(a, b);
             sv.step(spielfeld);
         }
     }
+
+    /**
+     * setzt den Spieler auf eine zufällige Position
+     */
 
     public static void zufallsPositionSpieler() {
         if (spielfeld != null) {
@@ -28,12 +38,22 @@ public class OasenSuche {
         }
     }
 
+    /**
+     * Generiert Wasserfelder mit einer Chance von c%
+     * @param c double
+     */
+
     public static void wasserZufall(double c) {
         if (spielfeld != null) {
             Simulationen.fuellen(spielfeld, '2', c);
             sv.step(spielfeld);
         }
     }
+
+    /**
+     * Generiert Wasserfelder mit einer Chance von c%
+     * @param c double
+     */
 
     public static void steinZufall(double c) {
         if (spielfeld != null) {
@@ -42,9 +62,19 @@ public class OasenSuche {
         }
     }
 
+    /**
+     * Überprüft, ob der Spieler Wasser gefunden hat
+     * @return true / false
+     */
+
     public static boolean wasserGefunden() {
         return Simulationen.zaehlenVier(spielfeld, '2', positionSpieler[0], positionSpieler[1], true) > 0;
     }
+
+    /**
+     * Simuliert die Reise eines dummen Spielers auf der Suche nach Wasser
+     * @param energie int
+     */
 
     public static void findeWasser(int energie) {
         int p;
