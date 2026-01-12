@@ -21,7 +21,7 @@ public class Zufall {
      */
 
     public static int zufallGanz(int b) {
-        return (int) Math.round(Math.random() * b);
+        return (int) (Math.random() * (b + 1));
     }
 
     /**

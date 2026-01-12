@@ -5,7 +5,7 @@ import schisch_visualizer.SchischVisualizer;
 
 public class Steine {
 
-    static int rounds = 1;
+    static int rounds = 10;
     static int t = 0;
 
     static SchischVisualizer sv = new SchischVisualizer();
@@ -128,8 +128,8 @@ public class Steine {
 
     /**
      * Simuliert den fallenden Stein bis eine Kollision bevorsteht
-     * @param tetromino
-     * @param x
+     * @param tetromino char[][]
+     * @param x int
      */
 
     public static void fallen(char[][] tetromino, int x) {
@@ -204,7 +204,6 @@ public class Steine {
         tetris = MultiArrays.createEmpty2DCharArray(10, 40);
         sv.step(tetris);
         rounds--;
-        System.out.println(t);
         if (rounds > 0) {
             stein();
         }
@@ -215,5 +214,6 @@ public class Steine {
 
     public static void main(String[] args) {
         stein();
+        System.out.println(t);
     }
 }
