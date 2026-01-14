@@ -79,7 +79,7 @@ public class Simulationen {
     public static char getNorden(char[][] arr, int x, int y, boolean rand) {
         y--;
         if (y < 0 && rand) {
-            y = arr.length - 1;
+            y = arr[x].length - 1;
         }
         else if (y < 0) {
             return '-';
@@ -101,7 +101,7 @@ public class Simulationen {
         if (y == arr.length && rand) {
             y = 0;
         }
-        else if (y == arr.length) {
+        else if (y == arr[x].length) {
             return '-';
         }
         return arr[x][y];
@@ -166,7 +166,7 @@ public class Simulationen {
             x = arr.length - 1;
         }
         if (rand && y < 0) {
-            y = arr.length - 1;
+            y = arr[x].length - 1;
         }
         return arr[x][y];
     }
@@ -190,7 +190,7 @@ public class Simulationen {
             x = 0;
         }
         if (rand && y < 0) {
-            y = arr.length - 1;
+            y = arr[x].length - 1;
         }
         return arr[x][y];
     }
@@ -207,13 +207,13 @@ public class Simulationen {
     public static char getSuedOst(char[][] arr, int x, int y, boolean rand) {
         y++;
         x++;
-        if ((x == arr.length || y == arr.length) && !rand) {
+        if ((x == arr.length || y == arr[x].length) && !rand) {
             return '-';
         }
         if (rand && x == arr.length) {
             x = 0;
         }
-        if (rand && y == arr.length) {
+        if (rand && y == arr[x].length) {
             y = 0;
         }
         return arr[x][y];
@@ -231,13 +231,13 @@ public class Simulationen {
     public static char getSuedWest(char[][] arr, int x, int y, boolean rand) {
         y++;
         x--;
-        if ((x < 0 || y == arr.length) && !rand) {
+        if ((x < 0 || y == arr[x].length) && !rand) {
             return '-';
         }
         if (rand && x < 0) {
             x = arr.length - 1;
         }
-        if (rand && y == arr.length) {
+        if (rand && y == arr[x].length) {
             y = 0;
         }
         return arr[x][y];

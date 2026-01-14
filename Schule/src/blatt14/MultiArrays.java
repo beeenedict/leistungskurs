@@ -122,7 +122,7 @@ public class MultiArrays {
             if (arr1[i].length != arr2[i].length) {
                 return false;
             }
-            for (int j = 0; j < arr1.length; j++) {
+            for (int j = 0; j < arr1[i].length; j++) {
                 if (arr1[i][j] != arr2[i][j]) {
                     return false;
                 }
