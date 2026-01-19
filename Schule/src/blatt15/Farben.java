@@ -11,6 +11,7 @@ public class Farben {
     static char[][] spielfeld;
     static int[] spielerPosX = new int[8];
     static int[] spielerPosY = new int[8];
+    static int[] reihenfolge = new int[8];
 
     public static void initialisiereSpielfeld(int x, int y) {
         spielfeld = MultiArrays.createEmpty2DCharArray(x, y);
@@ -73,7 +74,41 @@ public class Farben {
         return farbe;
     }
 
-    public static void respawn(int spieler) {
+    public static void respawn(int spieler, int team) {
+        char farbe = ' ';
+        int uebrigeFarbe = 0;
+
+        if (team == 1) {
+            farbe = '7';
+        }
+        if (team == 2) {
+            farbe = '9';
+        }
+
+        if (zaehlen(team) > 0) {
+
+            int random = Zufall.zufallGanz(6400);
+
+            spielerPosX[spieler] = 0;
+            spielerPosY[spieler] = 0;
+
+            while (random > 0) {
+                for (int i = 0; i < spielfeld.length; i++) {
+                    for (int j = 0; j < spielfeld[i].length; j++) {
+                        if (spielfeld[i][j] == farbe) {
+                            random--;
+                            if (random == 0) {
+                                spielerPosX[spieler] = i;
+                                spielerPosY[spieler] = j;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        else {
+
+        }
 
     }
 
