@@ -1,7 +1,9 @@
 package blatt15;
 
+import blatt07.ArbeitMitArrays;
 import blatt13.Zufall;
 import blatt14.MultiArrays;
+import blatt14.Simulationen;
 import schisch_visualizer.SchischVisualizer;
 
 public class Farben {
@@ -100,6 +102,7 @@ public class Farben {
                             if (random == 0) {
                                 spielerPosX[spieler] = i;
                                 spielerPosY[spieler] = j;
+                                spielfeld[i][j] = 'P';
                             }
                         }
                     }
@@ -107,14 +110,74 @@ public class Farben {
             }
         }
         else {
+            int x;
+            int y;
+            do {
+                x = Zufall.zufallGanz(1, 80);
+                y = Zufall.zufallGanz(1, 80);
+            } while (spielfeld[x][y] == 'P');
 
+            spielerPosX[spieler] = x;
+            spielerPosY[spieler] = y;
+            spielfeld[x][y] = 'P';
+        }
+    }
+
+    public static void reihenfolge() {
+        int position;
+
+        for (int i = 0; i < reihenfolge.length; i++) {
+            reihenfolge[i] = -1;
         }
 
+        for (int i = 0; i < reihenfolge.length; i++) {
+            do {
+                position = Zufall.zufallGanz(7);
+            } while (reihenfolge[position] != -1);
+            reihenfolge[position] = i;
+        }
+    }
+
+    public static void zugEins(int spieler) {
+        int x = spielerPosX[spieler];
+        int y = spielerPosY[spieler];
+        char[] sichtfeld = new char[12];
+
+        sichtfeld[0] = Simulationen.getNorden(spielfeld, x, y - 1, false);
+        sichtfeld[4] = Simulationen.getWesten(spielfeld, x-1, y, false);
+        sichtfeld[7] = Simulationen.getOsten(spielfeld, x+1, y, false);
+        sichtfeld[11] = Simulationen.getSueden(spielfeld, x, y+1, false);
+
+        sichtfeld[1] = Simulationen.getNordWest(spielfeld, x, y, false);
+        sichtfeld[2] = Simulationen.getNorden(spielfeld, x, y, false);
+        sichtfeld[3] = Simulationen.getNordOst(spielfeld, x, y, false);
+        sichtfeld[5] = Simulationen.getOsten(spielfeld, x, y, false);
+        sichtfeld[6] = Simulationen.getWesten(spielfeld, x, y, false);
+        sichtfeld[8] = Simulationen.getSuedOst(spielfeld, x, y, false);
+        sichtfeld[9] = Simulationen.getSueden(spielfeld, x, y, false);
+        sichtfeld[10] = Simulationen.getSuedWest(spielfeld, x, y, false);
+
+        int richtung;
+        /*
+                0
+             1  2  3
+          4  5 'P' 6  7
+             8  9  10
+                11
+         */
+
+        if (spieler < 4) {}
+        else {
+
+        }
+        sv.step(spielfeld);
     }
 
     public static void main(String[] args) {
-        initialisiereSpielfeld(80, 80);
+        initialisiereSpielfeld(82, 82);
         startPositionen();
+        reihenfolge();
+
         sv.start();
     }
 }

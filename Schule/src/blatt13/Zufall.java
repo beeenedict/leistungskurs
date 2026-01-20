@@ -43,7 +43,7 @@ public class Zufall {
      */
 
     public static int zufallGanz(int a, int b) {
-        return (int) Math.round(Math.random() * Math.abs(b-a) + a);
+        return (int) (Math.random() * Math.abs(b-a) + a);
     }
 
     /**
