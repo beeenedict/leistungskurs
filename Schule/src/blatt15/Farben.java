@@ -139,37 +139,90 @@ public class Farben {
     }
 
     public static void zugEins(int spieler) {
+        char farbe = ' ';
+
+        if (spieler < 4) {
+            farbe = '7';
+        }
+        else {
+            farbe = '9';
+        }
+
         int x = spielerPosX[spieler];
         int y = spielerPosY[spieler];
         char[] sichtfeld = new char[12];
 
-        sichtfeld[0] = Simulationen.getNorden(spielfeld, x, y - 1, false);
-        sichtfeld[4] = Simulationen.getWesten(spielfeld, x-1, y, false);
-        sichtfeld[7] = Simulationen.getOsten(spielfeld, x+1, y, false);
-        sichtfeld[11] = Simulationen.getSueden(spielfeld, x, y+1, false);
+        sichtfeld[8] = Simulationen.getNorden(spielfeld, x, y - 1, false);
+        sichtfeld[11] = Simulationen.getWesten(spielfeld, x-1, y, false);
+        sichtfeld[9] = Simulationen.getOsten(spielfeld, x+1, y, false);
+        sichtfeld[10] = Simulationen.getSueden(spielfeld, x, y+1, false);
 
-        sichtfeld[1] = Simulationen.getNordWest(spielfeld, x, y, false);
-        sichtfeld[2] = Simulationen.getNorden(spielfeld, x, y, false);
-        sichtfeld[3] = Simulationen.getNordOst(spielfeld, x, y, false);
-        sichtfeld[5] = Simulationen.getOsten(spielfeld, x, y, false);
-        sichtfeld[6] = Simulationen.getWesten(spielfeld, x, y, false);
-        sichtfeld[8] = Simulationen.getSuedOst(spielfeld, x, y, false);
-        sichtfeld[9] = Simulationen.getSueden(spielfeld, x, y, false);
-        sichtfeld[10] = Simulationen.getSuedWest(spielfeld, x, y, false);
+        sichtfeld[5] = Simulationen.getNordWest(spielfeld, x, y, false);
+        sichtfeld[0] = Simulationen.getNorden(spielfeld, x, y, false);
+        sichtfeld[4] = Simulationen.getNordOst(spielfeld, x, y, false);
+        sichtfeld[3] = Simulationen.getOsten(spielfeld, x, y, false);
+        sichtfeld[1] = Simulationen.getWesten(spielfeld, x, y, false);
+        sichtfeld[7] = Simulationen.getSuedOst(spielfeld, x, y, false);
+        sichtfeld[2] = Simulationen.getSueden(spielfeld, x, y, false);
+        sichtfeld[6] = Simulationen.getSuedWest(spielfeld, x, y, false);
 
-        int richtung;
         /*
-                0
-             1  2  3
-          4  5 'P' 6  7
-             8  9  10
-                11
+                8
+             7  0  4
+          11 3 'P' 1  9
+             6  2  5
+                10
          */
 
-        if (spieler < 4) {}
-        else {
 
+
+        int richtung = 0;
+
+        /*
+            -1 -> oben
+            -2 -> unten
+            1 -> links
+            2 -> rechts
+         */
+
+        if (spieler < 2 || (spieler < 6 && spieler > 3)) {
+            if (spieler < 2) {
+                richtung = 2;
+                for (int i = 0; i < sichtfeld.length; i++) {
+                    if (sichtfeld[i] == 'P') {
+                        switch (i) {
+                            case 0:
+                                richtung = -1;
+                            case 1:
+                                richtung = 1;
+                            case 2:
+                                richtung = -2;
+                            case 3:
+                                richtung = 2;
+                        }
+                    }
+                }
+            }
         }
+
+        // spieler platzieren
+
+        spielfeld[spielerPosX[spieler]][spielerPosY[spieler]] = farbe;
+        switch (richtung) {
+            case -1:
+                spielfeld[spielerPosX[spieler]][spielerPosY[spieler-1]] = 'P';
+                spielerPosY[spieler]--;
+            case -2:
+                spielfeld[spielerPosX[spieler]][spielerPosY[spieler+1]] = 'P';
+                spielerPosY[spieler]++;
+            case 1:
+                spielfeld[spielerPosX[spieler-1]][spielerPosY[spieler]] = 'P';
+                spielerPosX[spieler]--;
+            case 2:
+                spielfeld[spielerPosX[spieler+1]][spielerPosY[spieler]] = 'P';
+                spielerPosX[spieler]++;
+        }
+
         sv.step(spielfeld);
     }
 
