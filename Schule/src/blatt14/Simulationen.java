@@ -101,7 +101,7 @@ public class Simulationen {
         if (y == arr.length && rand) {
             y = 0;
         }
-        else if (y == arr[x].length) {
+        else if (y >= arr[x].length) {
             return '-';
         }
         return arr[x][y];
@@ -141,7 +141,7 @@ public class Simulationen {
         if (x == arr.length && rand) {
             x = 0;
         }
-        else if (x == arr.length) {
+        else if (x >= arr.length) {
             return '-';
         }
         return arr[x][y];

@@ -139,13 +139,10 @@ public class Farben {
     }
 
     public static void zugEins(int spieler) {
-        char farbe = ' ';
+        char farbe = '9';
 
         if (spieler < 4) {
             farbe = '7';
-        }
-        else {
-            farbe = '9';
         }
 
         int x = spielerPosX[spieler];
@@ -174,32 +171,64 @@ public class Farben {
                 10
          */
 
-
-
         int richtung = 0;
 
         /*
             -1 -> oben
-            -2 -> unten
-            1 -> links
+            1 -> unten
+            -2 -> links
             2 -> rechts
          */
 
         if (spieler < 2 || (spieler < 6 && spieler > 3)) {
-            if (spieler < 2) {
+            for (int i = 0; i < sichtfeld.length; i++) {
+                if (sichtfeld[i] == 'P') {
+                    switch (i) {
+                        case 0:
+                            richtung = -1;
+                            break;
+                        case 1:
+                            richtung = 2;
+                            break;
+                        case 2:
+                            richtung = 1;
+                            break;
+                        case 3:
+                            richtung = -2;
+                            break;
+                    }
+                }
+            }
+            if (spieler < 2 && spielerPosX[spieler] < 60) {
                 richtung = 2;
-                for (int i = 0; i < sichtfeld.length; i++) {
-                    if (sichtfeld[i] == 'P') {
-                        switch (i) {
-                            case 0:
-                                richtung = -1;
-                            case 1:
-                                richtung = 1;
-                            case 2:
-                                richtung = -2;
-                            case 3:
-                                richtung = 2;
-                        }
+            }
+            if (spieler > 3 && spielerPosX[spieler] > 20) {
+                richtung = 1;
+            }
+        }
+
+        else {
+            if (spielerPosX[spieler] != 20) {
+                if (spielerPosX[spieler] > 20) {
+                    richtung = -2;
+                }
+                else if (spielerPosX[spieler] < 20) {
+                    richtung = 2;
+                }
+            }
+            if (richtung == 0) {
+                if (spieler == 2) {
+                    if (spielerPosY[spieler] > 20) {
+                        richtung = -1;
+                    } else if (spielerPosY[spieler] < 20) {
+                        richtung = 1;
+                    }
+                }
+                if (spieler == 3) {
+                    if (spielerPosY[spieler] > 60) {
+                        richtung = -1;
+                    } else if (spielerPosY[spieler] < 60) {
+                        richtung = 1;
                     }
                 }
             }
@@ -210,27 +239,66 @@ public class Farben {
         spielfeld[spielerPosX[spieler]][spielerPosY[spieler]] = farbe;
         switch (richtung) {
             case -1:
-                spielfeld[spielerPosX[spieler]][spielerPosY[spieler-1]] = 'P';
                 spielerPosY[spieler]--;
-            case -2:
-                spielfeld[spielerPosX[spieler]][spielerPosY[spieler+1]] = 'P';
-                spielerPosY[spieler]++;
+                break;
             case 1:
-                spielfeld[spielerPosX[spieler-1]][spielerPosY[spieler]] = 'P';
+                spielerPosY[spieler]++;
+                break;
+            case -2:
                 spielerPosX[spieler]--;
+                break;
             case 2:
-                spielfeld[spielerPosX[spieler+1]][spielerPosY[spieler]] = 'P';
                 spielerPosX[spieler]++;
         }
+        spielfeld[spielerPosX[spieler]][spielerPosY[spieler]] = 'P';
+    }
 
-        sv.step(spielfeld);
+    public static void zugZwei(int spieler) {
+        char farbe = '9';
+
+        if (spieler < 4) {
+            farbe = '7';
+        }
+
+        int richtung;
+
+        do {
+            richtung = Zufall.zufallGanz(0, 5) - 2;
+            System.out.println(richtung);
+        } while (richtung == 0 || spielerPosX[spieler] + richtung < 2 || spielerPosX[spieler] + richtung > 79 || spielerPosY[spieler] + richtung < 1 || spielerPosY[spieler] + richtung > 80);
+
+        spielfeld[spielerPosX[spieler]][spielerPosY[spieler]] = farbe;
+        switch (richtung) {
+            case -1:
+                spielerPosY[spieler]--;
+                break;
+            case 1:
+                spielerPosY[spieler]++;
+                break;
+            case -2:
+                spielerPosX[spieler]--;
+                break;
+            case 2:
+                spielerPosX[spieler]++;
+        }
+        spielfeld[spielerPosX[spieler]][spielerPosY[spieler]] = 'P';
     }
 
     public static void main(String[] args) {
         initialisiereSpielfeld(82, 82);
         startPositionen();
         reihenfolge();
-
+        for (int j = 0; j < 1000; j++) {
+            for (int i = 0; i < reihenfolge.length; i++) {
+                if(i < 4) {
+                    zugEins(i);
+                }
+                else {
+                    zugZwei(i);
+                }
+            }
+            sv.step(spielfeld);
+        }
         sv.start();
     }
 }
