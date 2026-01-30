@@ -139,10 +139,27 @@ public class Farben {
     }
 
     public static void zugEins(int spieler) {
-        char farbe = '9';
+        char farbe = '7';
+        boolean team = false;
+        int spielernr = spieler;
 
-        if (spieler < 4) {
-            farbe = '7';
+        if (spieler > 3) {
+            farbe = '9';
+            team = true;
+        }
+
+        int xd = 20;
+        int yd1 = 20;
+        int yd2 = 60;
+
+        int xa = 60;
+        int ya1 = 20;
+        int ya2 = 60;
+
+        if (team) {
+            xd += 40;
+            xa -= 40;
+            spieler -= 4;
         }
 
         int x = spielerPosX[spieler];
@@ -180,58 +197,37 @@ public class Farben {
             2 -> rechts
          */
 
-        if (spieler < 2 || (spieler < 6 && spieler > 3)) {
-            for (int i = 0; i < sichtfeld.length; i++) {
-                if (sichtfeld[i] == 'P') {
-                    switch (i) {
-                        case 0:
-                            richtung = -1;
-                            break;
-                        case 1:
-                            richtung = 2;
-                            break;
-                        case 2:
-                            richtung = 1;
-                            break;
-                        case 3:
-                            richtung = -2;
-                            break;
-                    }
-                }
-            }
-            if (spieler < 2 && spielerPosX[spieler] < 60) {
-                richtung = 2;
-            }
-            if (spieler > 3 && spielerPosX[spieler] > 20) {
-                richtung = 1;
-            }
-        }
-
-        else {
-            if (spielerPosX[spieler] != 20) {
-                if (spielerPosX[spieler] > 20) {
-                    richtung = -2;
-                }
-                else if (spielerPosX[spieler] < 20) {
+        if (spieler == 0 || spieler == 1) {
+            if (spielerPosX[spielernr] != xd) {
+                if (spielerPosX[spielernr] < xd) {
                     richtung = 2;
                 }
-            }
-            if (richtung == 0) {
-                if (spieler == 2) {
-                    if (spielerPosY[spieler] > 20) {
-                        richtung = -1;
-                    } else if (spielerPosY[spieler] < 20) {
-                        richtung = 1;
-                    }
-                }
-                if (spieler == 3) {
-                    if (spielerPosY[spieler] > 60) {
-                        richtung = -1;
-                    } else if (spielerPosY[spieler] < 60) {
-                        richtung = 1;
-                    }
+                else {
+                    richtung = -2;
                 }
             }
+            else if (spieler == 0 && spielerPosY[spielernr] != yd1) {
+                if (spielerPosY[spielernr] < yd1) {
+                    richtung = 1;
+                }
+                else {
+                    richtung = -1;
+                }
+            }
+            else if (spieler == 1 && spielerPosX[spielernr] != yd2) {
+                if (spielerPosY[spielernr] < yd2) {
+                    richtung = 1;
+                }
+                else {
+                    richtung = -1;
+                }
+            }
+            else {
+                //Spirale
+            }
+        }
+        else {
+            //Angreifer
         }
 
         // spieler platzieren
@@ -264,8 +260,7 @@ public class Farben {
 
         do {
             richtung = Zufall.zufallGanz(0, 5) - 2;
-            System.out.println(richtung);
-        } while (richtung == 0 || spielerPosX[spieler] + richtung < 2 || spielerPosX[spieler] + richtung > 79 || spielerPosY[spieler] + richtung < 1 || spielerPosY[spieler] + richtung > 80);
+        } while (richtung == 0 || spielerPosX[spieler] + richtung < 0 || spielerPosX[spieler] + richtung > 81 || spielerPosY[spieler] + richtung < 1 || spielerPosY[spieler] + richtung > 80);
 
         spielfeld[spielerPosX[spieler]][spielerPosY[spieler]] = farbe;
         switch (richtung) {
@@ -290,7 +285,7 @@ public class Farben {
         reihenfolge();
         for (int j = 0; j < 1000; j++) {
             for (int i = 0; i < reihenfolge.length; i++) {
-                if(i < 4) {
+                if(i >= 4) {
                     zugEins(i);
                 }
                 else {
