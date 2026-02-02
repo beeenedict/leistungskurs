@@ -15,6 +15,8 @@ public class Farben {
     static int[] spielerPosY = new int[8];
     static int[] reihenfolge = new int[8];
 
+    static int start = 0;
+
     public static void initialisiereSpielfeld(int x, int y) {
         spielfeld = MultiArrays.createEmpty2DCharArray(x, y);
 
@@ -140,11 +142,13 @@ public class Farben {
 
     public static void zugEins(int spieler) {
         char farbe = '7';
+        char farbeG = '9';
         boolean team = false;
         int spielernr = spieler;
 
         if (spieler > 3) {
             farbe = '9';
+            farbeG = '7';
             team = true;
         }
 
@@ -159,11 +163,12 @@ public class Farben {
         if (team) {
             xd += 40;
             xa -= 40;
-            spieler -= 4;
+            spielernr -= 4;
         }
 
         int x = spielerPosX[spieler];
         int y = spielerPosY[spieler];
+
         char[] sichtfeld = new char[12];
 
         sichtfeld[8] = Simulationen.getNorden(spielfeld, x, y - 1, false);
@@ -174,8 +179,8 @@ public class Farben {
         sichtfeld[5] = Simulationen.getNordWest(spielfeld, x, y, false);
         sichtfeld[0] = Simulationen.getNorden(spielfeld, x, y, false);
         sichtfeld[4] = Simulationen.getNordOst(spielfeld, x, y, false);
-        sichtfeld[3] = Simulationen.getOsten(spielfeld, x, y, false);
-        sichtfeld[1] = Simulationen.getWesten(spielfeld, x, y, false);
+        sichtfeld[1] = Simulationen.getOsten(spielfeld, x, y, false);
+        sichtfeld[3] = Simulationen.getWesten(spielfeld, x, y, false);
         sichtfeld[7] = Simulationen.getSuedOst(spielfeld, x, y, false);
         sichtfeld[2] = Simulationen.getSueden(spielfeld, x, y, false);
         sichtfeld[6] = Simulationen.getSuedWest(spielfeld, x, y, false);
@@ -188,65 +193,189 @@ public class Farben {
                 10
          */
 
-        int richtung = 0;
+        int richtung = Zufall.zufallGanz(4);
 
         /*
-            -1 -> oben
+            0 -> oben
             1 -> unten
-            -2 -> links
-            2 -> rechts
+            2 -> links
+            3 -> rechts
          */
 
-        if (spieler == 0 || spieler == 1) {
-            if (spielerPosX[spielernr] != xd) {
-                if (spielerPosX[spielernr] < xd) {
+        int kante = 0;
+        if (sichtfeld[1] == farbe && sichtfeld[0] == farbe && sichtfeld[3] == farbe) {
+            richtung = 2;
+            kante = 1;
+        }
+        else if (sichtfeld[0] == farbe && sichtfeld[3] == farbe && sichtfeld[2] == farbe) {
+            richtung = 1;
+            kante = 2;
+        }
+        else if (sichtfeld[2] == farbe && sichtfeld[3] == farbe && sichtfeld[1] == farbe) {
+            richtung = 0;
+            kante = 3;
+        }
+        else if (sichtfeld[2] == farbe && sichtfeld[1] == farbe && sichtfeld[0] == farbe) {
+            richtung = 3;
+            kante = 4;
+        }
+        if (kante == 0) {
+            if (sichtfeld[1] == farbe && sichtfeld[0] == farbe) {
+                richtung = 2;
+                kante = 1;
+            } else if (sichtfeld[0] == farbe && sichtfeld[3] == farbe) {
+                richtung = 1;
+                kante = 2;
+            } else if (sichtfeld[2] == farbe && sichtfeld[3] == farbe) {
+                richtung = 0;
+                kante = 3;
+            } else if (sichtfeld[2] == farbe && sichtfeld[1] == farbe) {
+                richtung = 3;
+                kante = 4;
+            }
+        }
+        if (kante == 0) {
+            if (sichtfeld[1] == farbe) {
+                richtung = 2;
+            }
+            if (sichtfeld[2] == farbe) {
+                richtung = 3;
+            }
+            if (sichtfeld[3] == farbe) {
+                richtung = 0;
+            }
+            if (sichtfeld[0] == farbe) {
+                richtung = 1;
+            }
+        }
+
+
+        boolean verloren = true;
+        for (int i = 0; i < sichtfeld.length; i++) {
+            if (sichtfeld[i] == ' ' || sichtfeld[i] == farbeG) {
+                verloren = false;
+            }
+        }
+
+        if (!verloren) {
+            if (sichtfeld[0] == farbe && sichtfeld[1] == farbe && sichtfeld[2] == farbe && sichtfeld[3] == farbe) {
+                if ((sichtfeld[8] == ' ' || sichtfeld[8] == farbeG) || (sichtfeld[4] == ' ' || sichtfeld[4] == farbeG)) {
+                    richtung = 0;
+                }
+                if ((sichtfeld[9] == ' ' || sichtfeld[9] == farbeG) || (sichtfeld[5] == ' ' || sichtfeld[5] == farbeG)) {
+                    richtung = 1;
+                }
+                if ((sichtfeld[10] == ' ' || sichtfeld[10] == farbeG) || (sichtfeld[6] == ' ' || sichtfeld[6] == farbeG)) {
                     richtung = 2;
                 }
-                else {
-                    richtung = -2;
+                if ((sichtfeld[11] == ' ' || sichtfeld[11] == farbeG) || (sichtfeld[7] == ' ' || sichtfeld[7] == farbeG)) {
+                    richtung = 3;
                 }
-            }
-            else if (spieler == 0 && spielerPosY[spielernr] != yd1) {
-                if (spielerPosY[spielernr] < yd1) {
-                    richtung = 1;
-                }
-                else {
-                    richtung = -1;
-                }
-            }
-            else if (spieler == 1 && spielerPosX[spielernr] != yd2) {
-                if (spielerPosY[spielernr] < yd2) {
-                    richtung = 1;
-                }
-                else {
-                    richtung = -1;
-                }
-            }
-            else {
-                //Spirale
             }
         }
         else {
-            //Angreifer
+             if (x < 40) {
+                 richtung = 1;
+             }
+             else if (x > 40) {
+                 richtung = 3;
+             }
+             else if (y < 40) {
+                 richtung = 2;
+             }
+             else if (y > 40) {
+                 richtung = 0;
+             }
         }
+
+        if (sichtfeld[0] == '8') {
+            richtung = 2;
+        }
+        if (sichtfeld[1] == '8') {
+            richtung = 3;
+        }
+        if (sichtfeld[2] == '8') {
+            richtung = 0;
+        }
+        if (sichtfeld[3] == '8') {
+            richtung = 1;
+        }
+
+        if ((sichtfeld[0] == '8' && sichtfeld[2] != farbe) || (sichtfeld[1] == '8' && sichtfeld[3] == farbe)) {
+            richtung = 2;
+        }
+        if ((sichtfeld[3] == '8' && sichtfeld[1] != farbe) || (sichtfeld[0] == '8' && sichtfeld[2] == farbe)) {
+            richtung = 1;
+        }
+        if ((sichtfeld[1] == '8' && sichtfeld[3] != farbe) || (sichtfeld[2] == '8' && sichtfeld[0] == farbe)) {
+            richtung = 3;
+        }
+        if ((sichtfeld[2] == '8' && sichtfeld[0] != farbe) || (sichtfeld[3] == '8' && sichtfeld[1] == farbe)) {
+            richtung = 0;
+        }
+
+        if (sichtfeld[0] == farbe && sichtfeld[3] == farbe && sichtfeld[2] == farbe &&  sichtfeld[1] == '8') {
+            richtung = 1;
+        }
+        if (sichtfeld[0] == farbe && sichtfeld[1] == farbe && sichtfeld[2] == farbe &&  sichtfeld[3] == '8') {
+            richtung = 3;
+        }
+        if (sichtfeld[1] == farbe && sichtfeld[3] == farbe && sichtfeld[2] == farbe &&  sichtfeld[0] == '8') {
+            richtung = 0;
+        }
+        if (sichtfeld[0] == farbe && sichtfeld[3] == farbe && sichtfeld[1] == farbe &&  sichtfeld[2] == '8') {
+            richtung = 2;
+        }
+
+
+        /*for (int i = 0; i < 4; i++) {
+            if (sichtfeld[i] == 'P') {
+                richtung = i;
+                //kill
+            }
+        }
+
+         */
 
         // spieler platzieren
 
-        spielfeld[spielerPosX[spieler]][spielerPosY[spieler]] = farbe;
+        spielfeld[x][y] = farbe;
         switch (richtung) {
-            case -1:
-                spielerPosY[spieler]--;
-                break;
-            case 1:
-                spielerPosY[spieler]++;
-                break;
-            case -2:
-                spielerPosX[spieler]--;
+            case 0:
+                if (Simulationen.getNorden(spielfeld, x, y, false) != '8') {
+                    y--;
+                }
+                else {
+                    y++;
+                }
                 break;
             case 2:
-                spielerPosX[spieler]++;
+                if (Simulationen.getSueden(spielfeld, x, y, false) != '8') {
+                    y++;
+                }
+                else {
+                    y--;
+                }
+                break;
+            case 3:
+                if (Simulationen.getWesten(spielfeld, x, y, false) != '8') {
+                    x--;
+                }
+                else {
+                    x++;
+                }
+                break;
+            case 1:
+                if (Simulationen.getOsten(spielfeld, x, y, false) != '8') {
+                    x++;
+                }
+                else {
+                    x--;
+                }
         }
-        spielfeld[spielerPosX[spieler]][spielerPosY[spieler]] = 'P';
+        spielerPosX[spieler] = x;
+        spielerPosY[spieler] = y;
+        spielfeld[x][y] = 'P';
     }
 
     public static void zugZwei(int spieler) {
@@ -283,7 +412,7 @@ public class Farben {
         initialisiereSpielfeld(82, 82);
         startPositionen();
         reihenfolge();
-        for (int j = 0; j < 1000; j++) {
+        for (int j = 0; j < 10000; j++) {
             for (int i = 0; i < reihenfolge.length; i++) {
                 if(i >= 4) {
                     zugEins(i);
