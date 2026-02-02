@@ -1,6 +1,5 @@
 package blatt15;
 
-import blatt07.ArbeitMitArrays;
 import blatt13.Zufall;
 import blatt14.MultiArrays;
 import blatt14.Simulationen;
@@ -15,7 +14,7 @@ public class Farben {
     static int[] spielerPosY = new int[8];
     static int[] reihenfolge = new int[8];
 
-    static int start = 0;
+    static int verloren = 0;
 
     public static void initialisiereSpielfeld(int x, int y) {
         spielfeld = MultiArrays.createEmpty2DCharArray(x, y);
@@ -249,45 +248,7 @@ public class Farben {
             }
         }
 
-
-        boolean verloren = true;
-        for (int i = 0; i < sichtfeld.length; i++) {
-            if (sichtfeld[i] == ' ' || sichtfeld[i] == farbeG) {
-                verloren = false;
-            }
-        }
-
-        if (!verloren) {
-            if (sichtfeld[0] == farbe && sichtfeld[1] == farbe && sichtfeld[2] == farbe && sichtfeld[3] == farbe) {
-                if ((sichtfeld[8] == ' ' || sichtfeld[8] == farbeG) || (sichtfeld[4] == ' ' || sichtfeld[4] == farbeG)) {
-                    richtung = 0;
-                }
-                if ((sichtfeld[9] == ' ' || sichtfeld[9] == farbeG) || (sichtfeld[5] == ' ' || sichtfeld[5] == farbeG)) {
-                    richtung = 1;
-                }
-                if ((sichtfeld[10] == ' ' || sichtfeld[10] == farbeG) || (sichtfeld[6] == ' ' || sichtfeld[6] == farbeG)) {
-                    richtung = 2;
-                }
-                if ((sichtfeld[11] == ' ' || sichtfeld[11] == farbeG) || (sichtfeld[7] == ' ' || sichtfeld[7] == farbeG)) {
-                    richtung = 3;
-                }
-            }
-        }
-        else {
-             if (x < 40) {
-                 richtung = 1;
-             }
-             else if (x > 40) {
-                 richtung = 3;
-             }
-             else if (y < 40) {
-                 richtung = 2;
-             }
-             else if (y > 40) {
-                 richtung = 0;
-             }
-        }
-
+        /*
         if (sichtfeld[0] == '8') {
             richtung = 2;
         }
@@ -299,7 +260,7 @@ public class Farben {
         }
         if (sichtfeld[3] == '8') {
             richtung = 1;
-        }
+        }*/
 
         if ((sichtfeld[0] == '8' && sichtfeld[2] != farbe) || (sichtfeld[1] == '8' && sichtfeld[3] == farbe)) {
             richtung = 2;
@@ -314,16 +275,16 @@ public class Farben {
             richtung = 0;
         }
 
-        if (sichtfeld[0] == farbe && sichtfeld[3] == farbe && sichtfeld[2] == farbe &&  sichtfeld[1] == '8') {
+        if (sichtfeld[0] == farbe && sichtfeld[3] == farbe && sichtfeld[2] == farbe && sichtfeld[1] == '8') {
             richtung = 1;
         }
-        if (sichtfeld[0] == farbe && sichtfeld[1] == farbe && sichtfeld[2] == farbe &&  sichtfeld[3] == '8') {
+        if (sichtfeld[0] == farbe && sichtfeld[1] == farbe && sichtfeld[2] == farbe && sichtfeld[3] == '8') {
             richtung = 3;
         }
-        if (sichtfeld[1] == farbe && sichtfeld[3] == farbe && sichtfeld[2] == farbe &&  sichtfeld[0] == '8') {
+        if (sichtfeld[1] == farbe && sichtfeld[3] == farbe && sichtfeld[2] == farbe && sichtfeld[0] == '8') {
             richtung = 0;
         }
-        if (sichtfeld[0] == farbe && sichtfeld[3] == farbe && sichtfeld[1] == farbe &&  sichtfeld[2] == '8') {
+        if (sichtfeld[0] == farbe && sichtfeld[3] == farbe && sichtfeld[1] == farbe && sichtfeld[2] == '8') {
             richtung = 2;
         }
 
@@ -336,6 +297,76 @@ public class Farben {
         }
 
          */
+
+        boolean v = true;
+        for (int i = 0; i < sichtfeld.length; i++) {
+            if (sichtfeld[i] == ' ' || sichtfeld[i] == farbeG) {
+                v = false;
+                if (verloren == -1) {
+                    verloren = 2;
+                }
+                break;
+            }
+        }
+
+
+        if (verloren > 0) {
+            verloren--;
+        }
+
+        if (v && verloren != -1) {
+            verloren = 2;
+        }
+
+        if (verloren < 2) {
+            if (sichtfeld[0] == farbe && sichtfeld[1] == farbe && sichtfeld[2] == farbe && sichtfeld[3] == farbe) {
+                if (sichtfeld[4] == ' ' || sichtfeld[4] == farbeG) {
+                    richtung = 0;
+                }
+                else if (sichtfeld[5] == ' ' || sichtfeld[5] == farbeG) {
+                    richtung = 1;
+                }
+                else if (sichtfeld[6] == ' ' || sichtfeld[6] == farbeG) {
+                    richtung = 2;
+                }
+                else if (sichtfeld[7] == ' ' || sichtfeld[7] == farbeG) {
+                    richtung = 3;
+                }
+                else if (sichtfeld[8] == ' ' || sichtfeld[8] == farbeG) {
+                    richtung = 0;
+                }
+                else if (sichtfeld[9] == ' ' || sichtfeld[9] == farbeG) {
+                    richtung = 1;
+                }
+                else if (sichtfeld[10] == ' ' || sichtfeld[10] == farbeG) {
+                    richtung = 2;
+                }
+                else if (sichtfeld[11] == ' ' || sichtfeld[11] == farbeG) {
+                    richtung = 3;
+                }
+            }
+        }
+        else {
+            if (x < 40) {
+                richtung = 1;
+            }
+            else if (x > 40) {
+                richtung = 3;
+            }
+            else if (y < 40) {
+                richtung = 2;
+            }
+            else if (y > 40) {
+                richtung = 0;
+            }
+        }
+        if (x == 40 && y == 40 && v) {
+            verloren = -1;
+            richtung = Zufall.zufallGanz(4);
+        }
+        if (verloren == -1) {
+            richtung = Zufall.zufallGanz(4);
+        }
 
         // spieler platzieren
 
@@ -372,6 +403,7 @@ public class Farben {
                 else {
                     x--;
                 }
+                break;
         }
         spielerPosX[spieler] = x;
         spielerPosY[spieler] = y;
