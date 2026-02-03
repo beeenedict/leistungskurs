@@ -16,7 +16,7 @@ public class Farben {
     static int[] spielerPosY = new int[8];
     static int[] reihenfolge = new int[8];
 
-    static int richtung2 = -1;
+    static int stuck = 0;
 
     public static void initialisiereSpielfeld(int x, int y) {
         spielfeld = MultiArrays.createEmpty2DCharArray(x, y);
@@ -217,12 +217,12 @@ public class Farben {
             sichtfeld[9] = Simulationen.getOsten(spielfeld, x + 1, y, false);
             sichtfeld[10] = Simulationen.getSueden(spielfeld, x, y + 1, false);
 
-            sichtfeld[5] = Simulationen.getNordWest(spielfeld, x, y, false);
+            sichtfeld[5] = Simulationen.getSuedOst(spielfeld, x, y, false);
             sichtfeld[0] = Simulationen.getNorden(spielfeld, x, y, false);
             sichtfeld[4] = Simulationen.getNordOst(spielfeld, x, y, false);
             sichtfeld[1] = Simulationen.getOsten(spielfeld, x, y, false);
             sichtfeld[3] = Simulationen.getWesten(spielfeld, x, y, false);
-            sichtfeld[7] = Simulationen.getSuedOst(spielfeld, x, y, false);
+            sichtfeld[7] = Simulationen.getNordWest(spielfeld, x, y, false);
             sichtfeld[2] = Simulationen.getSueden(spielfeld, x, y, false);
             sichtfeld[6] = Simulationen.getSuedWest(spielfeld, x, y, false);
 
@@ -245,25 +245,7 @@ public class Farben {
 
             int kante = 0;
 
-            if (sichtfeld[0] == farbe && sichtfeld[1] == farbe && sichtfeld[2] == farbe && sichtfeld[3] == farbe && sichtfeld[4] == farbe && sichtfeld[5] == farbe && sichtfeld[6] == farbe && sichtfeld[7] == farbe) {
-                if (sichtfeld[8] == ' ' || sichtfeld[8] == farbeG) {
-                    richtung = 0;
-                    kante = 1;
-                }
-                if (sichtfeld[9] == ' ' || sichtfeld[9] == farbeG) {
-                    richtung = 1;
-                    kante = 2;
-                }
-                if (sichtfeld[10] == ' ' || sichtfeld[10] == farbeG) {
-                    richtung = 2;
-                    kante = 3;
-                }
-                if (sichtfeld[11] == ' ' || sichtfeld[11] == farbeG) {
-                    richtung = 3;
-                    kante = 4;
-                }
-            }
-            if (kante == 0 && sichtfeld[0] == farbe && sichtfeld[1] == farbe && sichtfeld[2] == farbe && sichtfeld[3] == farbe) {
+            if (sichtfeld[0] == farbe && sichtfeld[1] == farbe && sichtfeld[2] == farbe && sichtfeld[3] == farbe) {
                 if (sichtfeld[4] == farbeG || sichtfeld[4] == ' ') {
                     richtung = 1;
                     kante = 1;
@@ -278,6 +260,24 @@ public class Farben {
                 if (sichtfeld[7] == farbeG || sichtfeld[7] == ' ') {
                     richtung = 3;
                     kante = 3;
+                }
+                if (sichtfeld[4] == farbe && sichtfeld[5] == farbe && sichtfeld[6] == farbe && sichtfeld[7] == farbe) {
+                    if (sichtfeld[8] == ' ' || sichtfeld[8] == farbeG) {
+                        richtung = 0;
+                        kante = 1;
+                    }
+                    if (sichtfeld[9] == ' ' || sichtfeld[9] == farbeG) {
+                        richtung = 1;
+                        kante = 2;
+                    }
+                    if (sichtfeld[10] == ' ' || sichtfeld[10] == farbeG) {
+                        richtung = 2;
+                        kante = 3;
+                    }
+                    if (sichtfeld[11] == ' ' || sichtfeld[11] == farbeG) {
+                        richtung = 3;
+                        kante = 4;
+                    }
                 }
             }
             if (kante == 0) {
@@ -383,7 +383,7 @@ public class Farben {
                 } else if (y > 40) {
                     richtung = 0;
                 } else {
-                    richtung = zufallGanz(3);
+                    richtung = 0;
                 }
             }
 
