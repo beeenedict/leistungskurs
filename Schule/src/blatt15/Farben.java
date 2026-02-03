@@ -374,16 +374,16 @@ public class Farben {
             }
 
             if (v) {
-                if (x < 40) {
+                if (x < 3 * spielfeld.length / 4) {
                     richtung = 1;
-                } else if (x > 40) {
+                } else if (x > 3 * spielfeld.length / 4) {
                     richtung = 3;
-                } else if (y < 40) {
+                } else if (y < spielfeld[0].length / 2) {
                     richtung = 2;
-                } else if (y > 40) {
+                } else if (y > spielfeld[0].length / 2) {
                     richtung = 0;
                 } else {
-                    richtung = 0;
+                    richtung = -1;
                 }
             }
 
@@ -424,28 +424,28 @@ public class Farben {
                     if (Simulationen.getNorden(spielfeld, x, y, false) != '8') {
                         y--;
                     } else {
-                        x++;
+                        y++;
                     }
                     break;
                 case 2:
                     if (Simulationen.getSueden(spielfeld, x, y, false) != '8') {
                         y++;
                     } else {
-                        x--;
+                        y--;
                     }
                     break;
                 case 3:
                     if (Simulationen.getWesten(spielfeld, x, y, false) != '8') {
                         x--;
                     } else {
-                        y++;
+                        x++;
                     }
                     break;
                 case 1:
                     if (Simulationen.getOsten(spielfeld, x, y, false) != '8') {
                         x++;
                     } else {
-                        y--;
+                        x--;
                     }
                     break;
             }
@@ -521,6 +521,6 @@ public class Farben {
     }
 
     public static void main(String[] args) {
-        simulation(82, 82, 10000);
+        simulation(82, 82, 1000);
     }
 }
