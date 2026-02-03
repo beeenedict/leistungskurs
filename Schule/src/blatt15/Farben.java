@@ -229,7 +229,7 @@ public class Farben {
         /*
                 8
              7  0  4
-          11 3 'P' 1  9
+          11 3  -  1  9
              6  2  5
                 10
          */
@@ -245,7 +245,7 @@ public class Farben {
 
             int kante = 0;
 
-            if (sichtfeld[0] == farbe && sichtfeld[1] == farbe && sichtfeld[2] == farbe && sichtfeld[3] == farbe && sichtfeld[5] == farbe && sichtfeld[6] == farbe && sichtfeld[7] == farbe) {
+            if (sichtfeld[0] == farbe && sichtfeld[1] == farbe && sichtfeld[2] == farbe && sichtfeld[3] == farbe && sichtfeld[4] == farbe && sichtfeld[5] == farbe && sichtfeld[6] == farbe && sichtfeld[7] == farbe) {
                 if (sichtfeld[8] == ' ' || sichtfeld[8] == farbeG) {
                     richtung = 0;
                     kante = 1;
@@ -264,18 +264,18 @@ public class Farben {
                 }
             }
             if (kante == 0 && sichtfeld[0] == farbe && sichtfeld[1] == farbe && sichtfeld[2] == farbe && sichtfeld[3] == farbe) {
-                if (sichtfeld[4] == farbe) {
-                    richtung = 0;
+                if (sichtfeld[4] == farbeG || sichtfeld[4] == ' ') {
+                    richtung = 1;
                     kante = 1;
                 }
-                if (sichtfeld[5] == farbe) {
+                if (sichtfeld[5] == farbeG || sichtfeld[5] == ' ') {
                     richtung = 1;
                     kante = 2;
                 }
-                if (sichtfeld[6] == farbe) {
-                    richtung = 2;
+                if (sichtfeld[6] == farbeG || sichtfeld[6] == ' ') {
+                    richtung = 3;
                 }
-                if (sichtfeld[7] == farbe) {
+                if (sichtfeld[7] == farbeG || sichtfeld[7] == ' ') {
                     richtung = 3;
                     kante = 3;
                 }
@@ -365,6 +365,27 @@ public class Farben {
                 richtung = 2;
             }
 
+            boolean v = true;
+            for (int i = 0; i < sichtfeld.length; i++) {
+                if (sichtfeld[i] == ' ' || sichtfeld[i] == farbeG) {
+                    v = false;
+                    break;
+                }
+            }
+
+            if (v) {
+                if (x < 40) {
+                    richtung = 1;
+                } else if (x > 40) {
+                    richtung = 3;
+                } else if (y < 40) {
+                    richtung = 2;
+                } else if (y > 40) {
+                    richtung = 0;
+                } else {
+                    richtung = zufallGanz(3);
+                }
+            }
 
             for (int i = 0; i < 4; i++) {
                 if (sichtfeld[i] == 'P') {
@@ -395,28 +416,6 @@ public class Farben {
                 }
             }
 
-            boolean v = true;
-            for (int i = 0; i < sichtfeld.length; i++) {
-                if (sichtfeld[i] == ' ' || sichtfeld[i] == farbeG) {
-                    v = false;
-                    break;
-                }
-            }
-
-            if (v) {
-                if (x < 40) {
-                    richtung = 1;
-                } else if (x > 40) {
-                    richtung = 3;
-                } else if (y < 40) {
-                    richtung = 2;
-                } else if (y > 40) {
-                    richtung = 0;
-                } else {
-                    richtung = zufallGanz(3);
-                }
-            }
-
             // spieler platzieren
 
             spielfeld[x][y] = farbe;
@@ -425,28 +424,28 @@ public class Farben {
                     if (Simulationen.getNorden(spielfeld, x, y, false) != '8') {
                         y--;
                     } else {
-                        y++;
+                        x++;
                     }
                     break;
                 case 2:
                     if (Simulationen.getSueden(spielfeld, x, y, false) != '8') {
                         y++;
                     } else {
-                        y--;
+                        x--;
                     }
                     break;
                 case 3:
                     if (Simulationen.getWesten(spielfeld, x, y, false) != '8') {
                         x--;
                     } else {
-                        x++;
+                        y++;
                     }
                     break;
                 case 1:
                     if (Simulationen.getOsten(spielfeld, x, y, false) != '8') {
                         x++;
                     } else {
-                        x--;
+                        y--;
                     }
                     break;
             }
