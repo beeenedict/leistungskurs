@@ -186,6 +186,26 @@ public class Farben {
 
         int kante = 0;
         //TODO: Diagonale Bewegung
+        if (sichtfeld[] == farbe && ) {
+
+        }
+        if (kante == 0 && sichtfeld[0] == farbe && sichtfeld[1] == farbe && sichtfeld[2] == farbe && sichtfeld[3] == farbe) {
+            if (sichtfeld[4] == farbe) {
+                richtung = 0;
+                kante = 1;
+            }
+            if (sichtfeld[5] == farbe) {
+                richtung = 1;
+                kante = 2;
+            }
+            if (sichtfeld[6] == farbe) {
+                richtung = 2;
+            }
+            if (sichtfeld[7] == farbe) {
+                richtung = 3;
+                kante = 3;
+            }
+        }
         if (kante == 0) {
             if (sichtfeld[1] == farbe && sichtfeld[0] == farbe && sichtfeld[3] == farbe) {
                 richtung = 2;
