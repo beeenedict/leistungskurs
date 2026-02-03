@@ -132,6 +132,25 @@ public class MultiArrays {
     }
 
     /**
+     * Überprüft ob zwei zweidimensionale Char-Arrays einander identisch sind.
+     * @param arr1 char[][]
+     * @param arr2 char[][]
+     * @return boolean
+     */
+
+    public static boolean istIdentisch3D(char[][][] arr1, char[][][] arr2) {
+        if (arr1.length != arr2.length) {
+            return false;
+        }
+        for (int i = 0; i < arr1.length; i++) {
+            if (istIdentisch(arr1[i], arr2[i])) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
      * Kopiert einen gegebenen zweidimensionalen char-Array
      * @param arr char[][]
      * @return char[][]
@@ -143,6 +162,20 @@ public class MultiArrays {
             for (int j = 0; j < arr[0].length; j++) {
                 charr[i][j] = arr[i][j];
             }
+        }
+        return charr;
+    }
+
+    /**
+     * Kopiert einen gegebenen dreidimensionalen char-Array
+     * @param arr char[][]
+     * @return char[][]
+     */
+
+    public static char[][][] copy3DcharArray(char[][][] arr) {
+        char[][][] charr = new char[arr.length][arr[0].length][arr[0][0].length];
+        for (int i = 0; i < arr.length; i++) {
+            charr[i] = copy2DcharArray(arr[i]);
         }
         return charr;
     }
