@@ -30,7 +30,7 @@ public class KaeseKomplex {
 
         for(int k = 0; k < kaese.length; k++) {
             for (int i = 0; i < kaese[k].length; i++) {
-                for (int j = 1; j < kaese[k][i].length + 1; j++) {
+                for (int j = 1; j < y; j++) {
                     if (Math.random() > c) {
                         kaese[k][i][j] = '5';
                     }
@@ -44,7 +44,7 @@ public class KaeseKomplex {
         char[][][] kaeseAlt = MultiArrays.copy3DcharArray(kaese);
 
         for (int i = 0; i < kaese.length; i++) {
-            for (int j = 0; j < kaese[i].length; j++) {
+            for (int j = 0; j < kaese[0].length; j++) {
                 kaese[i][j][0] = '2';
             }
         }
@@ -55,7 +55,7 @@ public class KaeseKomplex {
             for (int k = 0; k < kaese.length; k++) {
                 for (int i = 0; i < kaese[k].length; i++) {
                     for (int j = 0; j < kaese[k][0].length; j++) {
-                        if (kaeseAlt[k][i][j] == '2') {
+                        if (kaese[k][i][j] == '2') {
                             if (Simulationen.getNorden(kaeseAlt[k], i, j, false) == ' ') {
                                 kaese[k][i][j - 1] = '2';
                             }
@@ -84,8 +84,8 @@ public class KaeseKomplex {
         }
     }
 
-    public static void istWasserdicht(int z) {
-        if (kaese[0][0][kaese[0].length - 1] == '2') {
+    public static void istWasserdicht() {
+        if (kaese[0][0][kaese[0][0].length - 1] == '2') {
             System.out.println("Der Käse ist nicht Wasserdicht!");
         }
         else {
@@ -96,6 +96,7 @@ public class KaeseKomplex {
     public static void main(String[] args) {
         initialisiereKaese();
         kaeseFluten();
+        istWasserdicht();
         sv.start();
     }
 }

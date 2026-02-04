@@ -527,6 +527,6 @@ public class Farben {
     }
 
     public static void main(String[] args) {
-        simulation(82, 82, 1000);
+        simulation(82, 82, 5000);
     }
 }

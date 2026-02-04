@@ -143,7 +143,7 @@ public class MultiArrays {
             return false;
         }
         for (int i = 0; i < arr1.length; i++) {
-            if (istIdentisch(arr1[i], arr2[i])) {
+            if (!istIdentisch(arr1[i], arr2[i])) {
                 return false;
             }
         }
