@@ -28,9 +28,9 @@ public class KaeseKomplex {
             kaese[i] = MultiArrays.createEmpty2DCharArray(x, y + 2);
         }
 
-        for(int k = 0; k < z; k++) {
-            for (int i = 0; i < kaese.length; i++) {
-                for (int j = 1; j < y + 1; j++) {
+        for(int k = 0; k < kaese.length; k++) {
+            for (int i = 0; i < kaese[k].length; i++) {
+                for (int j = 1; j < kaese[k][i].length + 1; j++) {
                     if (Math.random() > c) {
                         kaese[k][i][j] = '5';
                     }

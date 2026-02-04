@@ -180,7 +180,6 @@ public class Farben {
             sv.step(spielfeld);
         }
     }
-
     public static void reihenfolge() {
         int position;
 
@@ -216,6 +215,7 @@ public class Farben {
             sichtfeld[11] = Simulationen.getWesten(spielfeld, x - 1, y, false);
             sichtfeld[9] = Simulationen.getOsten(spielfeld, x + 1, y, false);
             sichtfeld[10] = Simulationen.getSueden(spielfeld, x, y + 1, false);
+
 
             sichtfeld[5] = Simulationen.getSuedOst(spielfeld, x, y, false);
             sichtfeld[0] = Simulationen.getNorden(spielfeld, x, y, false);
@@ -373,10 +373,16 @@ public class Farben {
                 }
             }
 
+            int zx = 3 * spielfeld.length / 4;
+
+            if (spieler > 3) {
+                zx /= 3;
+            }
+
             if (v) {
-                if (x < 3 * spielfeld.length / 4) {
+                if (x < zx) {
                     richtung = 1;
-                } else if (x > 3 * spielfeld.length / 4) {
+                } else if (x > zx) {
                     richtung = 3;
                 } else if (y < spielfeld[0].length / 2) {
                     richtung = 2;
