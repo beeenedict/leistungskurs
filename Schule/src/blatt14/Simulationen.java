@@ -98,7 +98,7 @@ public class Simulationen {
 
     public static char getSueden(char[][] arr, int x, int y, boolean rand) {
         y++;
-        if (y == arr.length && rand) {
+        if (y >= arr[x].length && rand) {
             y = 0;
         }
         else if (y >= arr[x].length) {
@@ -138,7 +138,7 @@ public class Simulationen {
 
     public static char getOsten(char[][] arr, int x, int y, boolean rand) {
         x++;
-        if (x == arr.length && rand) {
+        if (x >= arr.length && rand) {
             x = 0;
         }
         else if (x >= arr.length) {
@@ -183,10 +183,10 @@ public class Simulationen {
     public static char getNordOst(char[][] arr, int x, int y, boolean rand) {
         y--;
         x++;
-        if ((x == arr.length || y < 0) && !rand) {
+        if ((x >= arr.length || y < 0) && !rand) {
             return '-';
         }
-        if (rand && x == arr.length) {
+        if (rand && x >= arr.length) {
             x = 0;
         }
         if (rand && y < 0) {
@@ -207,13 +207,14 @@ public class Simulationen {
     public static char getSuedOst(char[][] arr, int x, int y, boolean rand) {
         y++;
         x++;
-        if ((x == arr.length || y == arr[x].length) && !rand) {
+        if ((x >= arr.length || y >= arr[x].length) && !rand) {
+            System.out.println("o");
             return '-';
         }
-        if (rand && x == arr.length) {
+        if (rand && x >= arr.length) {
             x = 0;
         }
-        if (rand && y == arr[x].length) {
+        if (rand && y >= arr[x].length) {
             y = 0;
         }
         return arr[x][y];
@@ -231,13 +232,14 @@ public class Simulationen {
     public static char getSuedWest(char[][] arr, int x, int y, boolean rand) {
         y++;
         x--;
-        if ((x < 0 || y == arr[x].length) && !rand) {
+        if ((x < 0 || y >= arr[x].length) && !rand) {
+            System.out.println("w");
             return '-';
         }
         if (rand && x < 0) {
             x = arr.length - 1;
         }
-        if (rand && y == arr[x].length) {
+        if (rand && y >= arr[x].length) {
             y = 0;
         }
         return arr[x][y];

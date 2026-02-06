@@ -78,12 +78,12 @@ public class Steine {
      * @param y int
      */
 
-    public static void zeichneTetromino(char[][] t, int r, int x, int y) {
+    public static void zeichneTetromino(char[][] feld, char[][] t, int r, int x, int y) {
         char[][] tetromino = drehe2DcharArray(MultiArrays.copy2DcharArray(t), r);
         for (int i = 0; i < tetromino.length; i++) {
             for (int j = 0; j < tetromino[0].length; j++) {
                 if (tetromino[i][j] != ' ') {
-                    tetris[i + x][j + y] = tetromino[i][j];
+                    feld[i + x][j + y] = tetromino[i][j];
                 }
             }
         }
@@ -134,16 +134,16 @@ public class Steine {
 
     public static void fallen(char[][] tetromino, int x) {
         int y = 1;
-        zeichneTetromino(tetromino, 0, x, 0);
+        zeichneTetromino(tetris, tetromino, 0, x, 0);
         sv.step(tetris);
         platzmachen(tetromino, x, 0);
         while (istPlatz(tetromino, 0, x, y)) {
-            zeichneTetromino(tetromino, 0, x, y);
+            zeichneTetromino(tetris, tetromino, 0, x, y);
             sv.step(tetris);
             platzmachen(tetromino, x, y);
             y++;
         }
-        zeichneTetromino(tetromino, 0, x, y - 1);
+        zeichneTetromino(tetris, tetromino, 0, x, y - 1);
         sv.step(tetris);
         tetris();
         if (rounds > 0) {
