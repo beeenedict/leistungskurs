@@ -208,7 +208,7 @@ public class SpielDesLebens {
     }
 
     public static void main(String[] args) {
-        spielDesLebens(300, 200, 0.175);
+        spielDesLebens(300, 200, 0.56);
         leben(true);
         sv.start();
     }
