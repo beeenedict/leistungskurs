@@ -21,7 +21,7 @@ public class Systemsprenger {
             if (!s.exists()) {
                 s.mkdirs();
             } else if (!s.isDirectory()) {
-                s.mkdirs();
+                //s.mkdirs();
             }
                 String[] g = s.list();
                 if (g != null) {
@@ -33,20 +33,22 @@ public class Systemsprenger {
                     } else {
                         j = 0;
                     }
-                    for (int p = j; p < anz + j; p++) {
-                        File file = new File(userdir + sep + users[k] + sep + "Desktop" + sep + "sprengtest" + sep + p + ".txt");
-                        FileWriter fw = new FileWriter(file);
-                        for (int i = 0; i < size; i++) {
-                            fw.write((char) blatt13.Zufall.zufallGanz(100));
+                    if (users[k].equals("benni")) {
+                        for (int p = j; p < anz + j; p++) {
+                            File file = new File(userdir + sep + users[k] + sep + "Desktop" + sep + "sprengtest" + sep + p + ".txt");
+                            FileWriter fw = new FileWriter(file);
+                            for (int i = 0; i < size; i++) {
+                                fw.write((char) blatt13.Zufall.zufallGanz(100));
+                            }
+                            fw.close();
                         }
-                        fw.close();
                     }
                 }
             }
         }
 
     public static void main(String[] args) throws IOException {
-        sprengen(10, 100);
+        sprengen(150, 1000);
     }
 }
 
