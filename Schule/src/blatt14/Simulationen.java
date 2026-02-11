@@ -298,4 +298,33 @@ public class Simulationen {
         }
         return z;
     }
+
+    /**
+     * Gibt den Wert in der angegebenen Richtung liegend zurück.
+     * @param arr char[][]
+     * @param r Richtung
+     * @param x int
+     * @param y int
+     * @param rand boolean
+     * @return char
+     */
+
+    public static char getNachbar(char[][] arr, int r, int x, int y, boolean rand) {
+        char c = '-';
+        switch (r) {
+            case 0:
+                c = getNorden(arr, x, y, rand);
+                break;
+            case 1:
+                c = getOsten(arr, x, y, rand);
+                break;
+            case 2:
+                c = getSueden(arr, x, y, rand);
+                break;
+            case 3:
+                c = getWesten(arr, x, y, rand);
+                break;
+        }
+        return c;
+    }
 }
