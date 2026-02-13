@@ -82,6 +82,8 @@ public class Spiegel {
         }
         spiegel[20][1] = '<';
         spiegel[17][1] = '>';
+        spiegel[21][1] = '<';
+        spiegel[16][1] = '>';
         spiegel[20][2] = '<';
         spiegel[18][2] = '^';
         sv.step(spiegel);
@@ -172,6 +174,8 @@ public class Spiegel {
                     }
                 }
             }
+
+            unfall(0, 0, false, true);
 
             for (int i = 0; i < spiegel.length; i++) {
                 for (int j = 0; j < spiegel[0].length; j++) {
@@ -287,8 +291,45 @@ public class Spiegel {
                             case ZIEL:
                                 spiegel[tempx][tempy] = ' ';
                                 break;
+                            case PFEILU:
+                                if (pfeil == PFEILO) {
+                                    break;
+                                }
+                                if (pfeil == PFEILU) {
+                                    spiegel[tempx][tempy] = pfeil;
+                                    break;
+                                }
+                            case PFEILO:
+                                if (pfeil == PFEILU) {
+                                    break;
+                                }
+                                if (pfeil == PFEILO) {
+                                    spiegel[tempx][tempy] = pfeil;
+                                    break;
+                                }
+                            case PFEILR:
+                                if (pfeil == PFEILL) {
+                                    break;
+                                }
+                                if (pfeil == PFEILR) {
+                                    spiegel[tempx][tempy] = pfeil;
+                                    break;
+                                }
+                            case PFEILL:
+                                if (pfeil == PFEILR) {
+                                    break;
+                                }
+                                if (pfeil == PFEILL) {
+                                    spiegel[tempx][tempy] = pfeil;
+                                    break;
+                                }
                             default:
-                                spiegel[tempx][tempy] = pfeil;
+                                if ((spiegel[tempx][tempy] == PFEILO || spiegel[tempx][tempy] == PFEILR || spiegel[tempx][tempy] == PFEILU || spiegel[tempx][tempy] == PFEILL) && pfeil != temp) {
+                                    spiegel[tempx][tempy] = ' ';
+                                }
+                                else {
+                                    spiegel[tempx][tempy] = pfeil;
+                                }
                                 break;
                         }
                     }
@@ -299,22 +340,22 @@ public class Spiegel {
                 pfeile--;
             }
             zuege++;
-            unfall(0, 0, false, true);
             sv.step(spiegel);
             if (zieleErreicht() && (bisGewonnen || pfeile > 0)) {
                 if (!bisGewonnen) {
                     System.out.println("Übrige Pfeile: " + pfeile);
                 }
+                System.out.println("Alle Ziele getroffen!");
                 pfeile = 0;
                 bisGewonnen = false;
             }
-        } while ((!MultiArrays.istIdentisch(spiegel, spiegelAlt) || pfeile > 0 || bisGewonnen) && zuege < 2);
+        } while ((!MultiArrays.istIdentisch(spiegel, spiegelAlt) || pfeile > 0 || bisGewonnen));
     }
 
     public static void main(String[] args) {
-        zufallSpiegel(0);
-        zufallZiele(0);
-        spiegelSimulation(10, 0.5, 5, false);
+        zufallSpiegel(0.3);
+        zufallZiele(0.3);
+        spiegelSimulation(2, 0.5, 500, true);
         sv.start();
     }
 }
