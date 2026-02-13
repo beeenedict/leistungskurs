@@ -93,8 +93,8 @@ public class Spiegel {
         spiegel[0][spiegel.length/2] = PFEILR;
     }
 
-    public static char einfaerben(int unfaelle) { // '0', '5', 'A', '4', 'F', 'C', '1'
-        char farbe = '0';
+    public static char einfaerben(int unfaelle) { // ' ', '5', 'A', '4', 'F', 'C', '1'
+        char farbe = ' ';
         if (unfaelle > 10) {
             farbe = '5';
         } if (unfaelle > 20) {
@@ -167,6 +167,7 @@ public class Spiegel {
             int tempx;
             int tempy;
 
+            unfall(0, 0, false, true);
             for (int i = 0; i < spiegel.length; i++) {
                 for (int j = 0; j < spiegel[0].length; j++) {
                     if (spiegel[i][j] == PFEILR || spiegel[i][j] == PFEILU || spiegel[i][j] == PFEILL || spiegel[i][j] == PFEILO) {
@@ -174,8 +175,6 @@ public class Spiegel {
                     }
                 }
             }
-
-            unfall(0, 0, false, true);
 
             for (int i = 0; i < spiegel.length; i++) {
                 for (int j = 0; j < spiegel[0].length; j++) {
@@ -225,11 +224,11 @@ public class Spiegel {
                                         tempy++;
                                     }
                                 } else {
-                                    spg = Simulationen.getWesten(spiegelAlt, tempx, tempy, false);
                                     richtung = 3;
+                                    spg = Simulationen.getWesten(spiegelAlt, tempx, tempy, false);
                                     tempx--;
                                 }
-                                if (spg != ' ') {
+                                if (!(spg == ' ' || spg == '5' || spg == 'A' || spg == '4' || spg == 'F' || spg == 'D' || spg == 'C' || spg == '1')) {
                                     spiegel[tempx][tempy] = ' ';
                                 } else {
                                     switch (richtung) {
@@ -269,7 +268,7 @@ public class Spiegel {
                                     spg = Simulationen.getNachbar(spiegelAlt, richtung, tempx, tempy, true);
                                     tempy++;
                                 }
-                                if (spg == ZIEL) {
+                                if (!(spg == ' ' || spg == '5' || spg == 'A' || spg == '4' || spg == 'F' || spg == 'D' || spg == 'C' || spg == '1')) {
                                     spiegel[tempx][tempy] = ' ';
                                 } else {
                                     switch (richtung) {
@@ -324,7 +323,7 @@ public class Spiegel {
                                     break;
                                 }
                             default:
-                                if ((spiegel[tempx][tempy] == PFEILO || spiegel[tempx][tempy] == PFEILR || spiegel[tempx][tempy] == PFEILU || spiegel[tempx][tempy] == PFEILL) && pfeil != temp) {
+                                if (spiegel[tempx][tempy] == PFEILO || spiegel[tempx][tempy] == PFEILR || spiegel[tempx][tempy] == PFEILU || spiegel[tempx][tempy] == PFEILL) {
                                     spiegel[tempx][tempy] = ' ';
                                 }
                                 else {
@@ -353,8 +352,8 @@ public class Spiegel {
     }
 
     public static void main(String[] args) {
-        zufallSpiegel(0.3);
-        zufallZiele(0.3);
+        zufallSpiegel(0.5);
+        zufallZiele(0.2);
         spiegelSimulation(2, 0.5, 500, true);
         sv.start();
     }
