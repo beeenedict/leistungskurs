@@ -12,6 +12,10 @@ public class Kaese {
 
     static char[][] kaese;
 
+    /**
+     * Erstellt einen Käseblock der Größe a * b, mit der Löcherwahrscheinlichkeit von c% (User Input)
+     */
+
     public static void initialisiereKaese() {
         Scanner input = new Scanner(System.in);
         System.out.println("Wie breit soll der Käse sein?");
@@ -33,6 +37,10 @@ public class Kaese {
         }
         sv.step(kaese);
     }
+
+    /**
+     * Simuliert einen Käse, der von Wasser geflutet wird.
+     */
 
     public static void kaeseFluten() {
         char[][] kaeseAlt = MultiArrays.copy2DcharArray(kaese);
@@ -65,9 +73,13 @@ public class Kaese {
             }
             sv.step(kaese);
         }
-
         istWasserdicht(kaese);
     }
+
+    /**
+     * Prüft, ob ein gefluteter Käse wasserdicht ist.
+     * @param kaese char[][]
+     */
 
     public static void istWasserdicht(char[][] kaese) {
         if (kaese[0][kaese[0].length - 1] == '2') {

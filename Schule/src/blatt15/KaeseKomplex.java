@@ -11,6 +11,10 @@ public class KaeseKomplex {
 
     static char[][][] kaese;
 
+    /**
+     * Erstellt einen 3D-Käseblock der Größe x * y * z, mit der Löcherwahrscheinlichkeit von c% (User Input)
+     */
+
     public static void initialisiereKaese() {
         Scanner input = new Scanner(System.in);
         System.out.println("Wie breit soll der Käse sein?");
@@ -38,6 +42,10 @@ public class KaeseKomplex {
             }
         }
     }
+
+    /**
+     * Simuliert einen 3D-Käse, der von Wasser geflutet wird.
+     */
 
     public static void kaeseFluten() {
 
@@ -83,6 +91,10 @@ public class KaeseKomplex {
             sv.step(kaese[i]);
         }
     }
+
+    /**
+     * Prüft, ob ein gefluteter 3D-Käse wasserdicht ist.
+     */
 
     public static void istWasserdicht() {
         if (kaese[0][0][kaese[0][0].length - 1] == '2') {

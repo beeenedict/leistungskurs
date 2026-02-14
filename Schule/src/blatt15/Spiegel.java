@@ -25,6 +25,11 @@ public class Spiegel {
 
     static SchischVisualizer sv = new SchischVisualizer();
 
+    /**
+     * Erstellt mit einer Wahrscheinlichkeit von c Spiegel.
+     * @param c double
+     */
+
     public static void zufallSpiegel(double c) {
         for (int i = 1; i < spiegel.length - 1; i++) {
             for (int j = 1; j < spiegel[0].length - 1; j++) {
@@ -42,6 +47,11 @@ public class Spiegel {
         sv.step(spiegel);
     }
 
+    /**
+     * Erstellt mit einer Wahrscheinlichkeit von c schwere Spiegel.
+     * @param c double
+     */
+
     public static void zufallSpiegelSchwer(double c) {
         for (int i = 1; i < spiegel.length - 1; i++) {
             for (int j = 1; j < spiegel[0].length - 1; j++) {
@@ -58,6 +68,11 @@ public class Spiegel {
         sv.step(spiegel);
     }
 
+    /**
+     * Prüft, ob die Pfeile alle Ziele getroffen haben.
+     * @return boolean -> Alle Ziele getroffen?
+     */
+
     public static boolean zieleErreicht() {
         int z = 0;
         for (int i = 1; i < spiegel.length - 1; i++) {
@@ -70,6 +85,11 @@ public class Spiegel {
         return z == 0;
     }
 
+    /**
+     * Erstellt mit einer Wahrscheinlichkeit von c Ziele auf allen leeren Feldern
+     * @param c
+     */
+
     public static void zufallZiele(double c) {
         for (int i = 1; i < spiegel.length - 1; i++) {
             for (int j = 1; j < spiegel[0].length - 1; j++) {
@@ -80,18 +100,22 @@ public class Spiegel {
                 }
             }
         }
-        spiegel[20][1] = '<';
-        spiegel[17][1] = '>';
-        spiegel[21][1] = '<';
-        spiegel[16][1] = '>';
-        spiegel[20][2] = '<';
-        spiegel[18][2] = '^';
         sv.step(spiegel);
     }
+
+    /**
+     * Generiert einen Pfeil. :O
+     */
 
     public static void generierePfeil() {
         spiegel[0][spiegel.length/2] = PFEILR;
     }
+
+    /**
+     * Färbt den Schicksaalsort der verunglückten Pfeile kunterbunt
+     * @param unfaelle
+     * @return
+     */
 
     public static char einfaerben(int unfaelle) { // ' ', '5', 'A', '4', 'F', 'C', '1'
         char farbe = ' ';
@@ -112,6 +136,14 @@ public class Spiegel {
         }
         return farbe;
     }
+
+    /**
+     * Aua.
+     * @param x int
+     * @param y int
+     * @param start boolean
+     * @param zeichnen boolean
+     */
 
     public static void unfall(int x, int y, boolean start, boolean zeichnen) {
         if (start) {
@@ -157,6 +189,14 @@ public class Spiegel {
             }
         }
     }
+
+    /**
+     * Wir schießen Licht gegen Spiegel und wundern uns, wenn es zurückkommt.
+     * @param abs int Frequenz
+     * @param dreh int Drehwarscheinlichkeit d. Spiegel
+     * @param pfeile int Anzahl d. Lichtbündel
+     * @param bisGewonnen boolean Gibt an, ob simuliert werden soll, bis alle Ziele getroffen wurden. Achtung: mögliche Unendlichkeit (while true)
+     */
 
     public static void spiegelSimulation(int abs, double dreh, int pfeile, boolean bisGewonnen) {
         unfall(0, 0, true, false);
@@ -207,67 +247,54 @@ public class Spiegel {
                             case '-':
                                 unfall(tempx, tempy, false, false);
                                 break;
-                            case SPIEGEL1:
-                                if (Math.random() < dreh) {
-                                    spiegel[tempx][tempy] = SPIEGEL2;
-                                }
-                                if (richtung == 0 || richtung == 3 || richtung == 1) {
-                                    richtung = Math.abs(richtung - 1);
-                                    spg = Simulationen.getNachbar(spiegelAlt, richtung, tempx, tempy, true);
-                                    if (richtung == 1) {
-                                        tempx++;
+                            case SPIEGEL1, SPIEGEL2:
+                                spg = temp;
+                                do {
+                                    if (spg == SPIEGEL1) {
+                                        if (Math.random() < dreh) {
+                                            spiegel[tempx][tempy] = SPIEGEL2;
+                                        }
+                                        if (richtung == 0 || richtung == 3 || richtung == 1) {
+                                            richtung = Math.abs(richtung - 1);
+                                            spg = Simulationen.getNachbar(spiegelAlt, richtung, tempx, tempy, true);
+                                            if (richtung == 1) {
+                                                tempx++;
+                                            }
+                                            if (richtung == 0) {
+                                                tempy--;
+                                            }
+                                            if (richtung == 2) {
+                                                tempy++;
+                                            }
+                                        } else {
+                                            richtung = 3;
+                                            spg = Simulationen.getWesten(spiegelAlt, tempx, tempy, false);
+                                            tempx--;
+                                        }
                                     }
-                                    if (richtung == 0) {
-                                        tempy--;
+                                    else {
+                                        if (Math.random() < dreh) {
+                                            spiegel[tempx][tempy] = SPIEGEL1;
+                                        }
+                                        if (richtung == 2) {
+                                            richtung--;
+                                            spg = Simulationen.getNachbar(spiegelAlt, richtung, tempx, tempy, true);
+                                            tempx++;
+                                        } else if (richtung == 0) {
+                                            richtung = 3;
+                                            spg = Simulationen.getNachbar(spiegelAlt, richtung, tempx, tempy, true);
+                                            tempx--;
+                                        } else if (richtung == 3) {
+                                            richtung = 0;
+                                            spg = Simulationen.getNachbar(spiegelAlt, richtung, tempx, tempy, true);
+                                            tempy--;
+                                        } else {
+                                            richtung++;
+                                            spg = Simulationen.getNachbar(spiegelAlt, richtung, tempx, tempy, true);
+                                            tempy++;
+                                        }
                                     }
-                                    if (richtung == 2) {
-                                        tempy++;
-                                    }
-                                } else {
-                                    richtung = 3;
-                                    spg = Simulationen.getWesten(spiegelAlt, tempx, tempy, false);
-                                    tempx--;
-                                }
-                                if (!(spg == ' ' || spg == '5' || spg == 'A' || spg == '4' || spg == 'F' || spg == 'D' || spg == 'C' || spg == '1')) {
-                                    spiegel[tempx][tempy] = ' ';
-                                } else {
-                                    switch (richtung) {
-                                        case 0:
-                                            spiegel[tempx][tempy] = PFEILO;
-                                            break;
-                                        case 1:
-                                            spiegel[tempx][tempy] = PFEILR;
-                                            break;
-                                        case 2:
-                                            spiegel[tempx][tempy] = PFEILU;
-                                            break;
-                                        case 3:
-                                            spiegel[tempx][tempy] = PFEILL;
-                                            break;
-                                    }
-                                }
-                                break;
-                            case SPIEGEL2:
-                                if (Math.random() < dreh) {
-                                    spiegel[tempx][tempy] = SPIEGEL1;
-                                }
-                                if (richtung == 2) {
-                                    richtung--;
-                                    spg = Simulationen.getNachbar(spiegelAlt, richtung, tempx, tempy, true);
-                                    tempx++;
-                                } else if (richtung == 0) {
-                                    richtung = 3;
-                                    spg = Simulationen.getNachbar(spiegelAlt, richtung, tempx, tempy, true);
-                                    tempx--;
-                                } else if (richtung == 3) {
-                                    richtung = 0;
-                                    spg = Simulationen.getNachbar(spiegelAlt, richtung, tempx, tempy, true);
-                                    tempy--;
-                                } else {
-                                    richtung++;
-                                    spg = Simulationen.getNachbar(spiegelAlt, richtung, tempx, tempy, true);
-                                    tempy++;
-                                }
+                                } while (spg == SPIEGEL2 || spg == SPIEGEL1);
                                 if (!(spg == ' ' || spg == '5' || spg == 'A' || spg == '4' || spg == 'F' || spg == 'D' || spg == 'C' || spg == '1')) {
                                     spiegel[tempx][tempy] = ' ';
                                 } else {
@@ -352,9 +379,9 @@ public class Spiegel {
     }
 
     public static void main(String[] args) {
-        zufallSpiegel(0.5);
+        zufallSpiegel(0.3);
         zufallZiele(0.2);
-        spiegelSimulation(2, 0.5, 500, true);
+        spiegelSimulation(2, 0.5, 5000, false);
         sv.start();
     }
 }

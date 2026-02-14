@@ -1,10 +1,8 @@
 package blatt15;
 
-import blatt13.Zufall;
 import blatt14.MultiArrays;
 import blatt14.Simulationen;
 import schisch_visualizer.SchischVisualizer;
-
 import static blatt13.Zufall.zufallGanz;
 
 public class Farben {
@@ -17,6 +15,12 @@ public class Farben {
     static int[] reihenfolge = new int[8];
 
     static int stuck = 0;
+
+    /**
+     * Erstellt das Spielfeld für die Farben-Simulation mit der Größe x * y
+     * @param x int Breite
+     * @param y int Höhe
+     */
 
     public static void initialisiereSpielfeld(int x, int y) {
         spielfeld = MultiArrays.createEmpty2DCharArray(x, y);
@@ -31,6 +35,10 @@ public class Farben {
 
         sv.step(spielfeld);
     }
+
+    /**
+     * Setzt alle Spieler beider Teams auf zufällige Startpositionen innerhalb ihrer Spielfeldhälfte
+     */
 
     public static void startPositionen() {
 
@@ -49,6 +57,12 @@ public class Farben {
 
         sv.step(spielfeld);
     }
+
+    /**
+     * Zählt die von dem angegebenen Team eingefärbten Felder
+     * @param team int
+     * @return int Anz. d. eingefärbten Felder
+     */
 
     public static int zaehlen (int team) {
         int farbe = 0;
@@ -132,6 +146,11 @@ public class Farben {
 
      */
 
+    /**
+     * Führt den Respawn eines gestorbenen Spielers durch
+     * @param spielernummer int
+     */
+
     public static void respawn(int spielernummer) {
         if (spielernummer >= 0 && spielernummer <= 7) {
             char[] f = new char[]{'7', '7', '7', '7', '9', '9', '9', '9'};
@@ -180,6 +199,11 @@ public class Farben {
             sv.step(spielfeld);
         }
     }
+
+    /**
+     * Lost die Reihenfolge aus, in der die Spieler in diesem Zug ziehen dürfen
+     */
+
     public static void reihenfolge() {
         int position;
 
@@ -194,6 +218,11 @@ public class Farben {
             reihenfolge[position] = i;
         }
     }
+
+    /**
+     * Führt den Spielzug eines Spielers aus, dessen einzige Aufgabe es war, gegen Jan zu gewinnen
+     * @param spieler int Spielernummer
+     */
 
     public static void zugEins(int spieler) {
         if (spielerPosX[spieler] > -1) {
@@ -461,6 +490,11 @@ public class Farben {
         }
     }
 
+    /**
+     * Führt den Spielzug eines Spielers aus, der Spaß am spielen findet, nicht am gewinnen
+     * @param spieler int Spielernummer
+     */
+
     public static void zugZwei(int spieler) {
         if (spielerPosX[spieler] > -1) {
             char farbe = '9';
@@ -492,6 +526,13 @@ public class Farben {
             spielfeld[spielerPosX[spieler]][spielerPosY[spieler]] = 'P';
         }
     }
+
+    /**
+     * Führt die Farben-Simulation z Spielzuege auf einem Spielfeld der Größe a * b durch
+     * @param a int
+     * @param b int
+     * @param z int
+     */
 
     public static void simulation(int a, int b, int z) {
         initialisiereSpielfeld(a, b);
