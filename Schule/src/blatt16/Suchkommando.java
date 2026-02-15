@@ -15,7 +15,7 @@ public class Suchkommando {
         String user = System.getProperty("user.home");
         String filePath = user;
         String[] dirs;
-        do {
+        do { //TODO: file suchen, appenden, repeat, backstep
             File fileAct = new File(filePath);
             dirs = fileAct.list();
             filePath += dirs;
