@@ -19,7 +19,7 @@ public class Suchkommando {
             File fileAct = new File(filePath);
             dirs = fileAct.list();
             filePath += dirs;
-        } while (dirs.length > 0)
+        } while (dirs.length > 0);
 
         int l = filePaths.size();
         return filePaths.toArray(new String[l]);
