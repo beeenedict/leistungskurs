@@ -14,8 +14,6 @@ public class Farben {
     static int[] spielerPosY = new int[8];
     static int[] reihenfolge = new int[8];
 
-    static int stuck = 0;
-
     /**
      * Erstellt das Spielfeld für die Farben-Simulation mit der Größe x * y
      * @param x int Breite
