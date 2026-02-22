@@ -61,7 +61,15 @@ public class Stroeme {
             FileWriter fw = new FileWriter(f);
             BufferedWriter bfw = new BufferedWriter(fw);
 
+            for (int i = 0; i < arr.length; i++) {
+                for (int j = 0; j < arr[i].length; j++) {
+                    bfw.write(arr[i][j]);
+                    bfw.newLine();
+                }
+            }
 
+            bfw.close();
+            fw.close();
         }
         catch (IOException e) {
             e.printStackTrace();
@@ -69,5 +77,6 @@ public class Stroeme {
     }
 
     public static void main(String[] args) {
+        writeCharArray("test.txt", readCharArray("laby01.txt"));
     }
 }
