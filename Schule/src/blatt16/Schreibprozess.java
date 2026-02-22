@@ -16,11 +16,11 @@ public class Schreibprozess {
             File f = new File(dir.getPath() + sep + "Test01.text");
             FileWriter fw = new FileWriter(f);
             BufferedWriter bfw = new BufferedWriter(fw);
-            bfw.write("Niemals funktioniert das.");
+            bfw.write("Ein sehr kreativer Satz.");
             bfw.newLine();
-            bfw.write("Doch tut es.");
+            bfw.write("Noch ein sehr kreativer Satz.");
             bfw.newLine();
-            bfw.write("Code kopieren ist toll.");
+            bfw.write("Wow.");
             bfw.close();
         } catch (IOException e) {
             e.printStackTrace();

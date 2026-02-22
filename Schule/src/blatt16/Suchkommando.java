@@ -1,11 +1,8 @@
 package blatt16;
 
 import blatt07.ArbeitMitArrays;
-
-import javax.swing.filechooser.FileSystemView;
 import java.io.File;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
 
