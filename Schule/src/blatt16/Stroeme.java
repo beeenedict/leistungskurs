@@ -46,8 +46,26 @@ public class Stroeme {
         catch (IOException e) {
             e.printStackTrace();
         }
-
         return arr;
+    }
+
+    public static void writeCharArray(String fileName, char[][] arr) {
+        char c = File.separatorChar;
+
+        try {
+            File dir = new File("Schule" + c + "io");
+            if (!dir.exists()) {
+                dir.mkdirs();
+            }
+            File f = new File(dir.getPath() + c + fileName);
+            FileWriter fw = new FileWriter(f);
+            BufferedWriter bfw = new BufferedWriter(fw);
+
+
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public static void main(String[] args) {
