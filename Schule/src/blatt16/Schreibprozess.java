@@ -6,6 +6,12 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class Schreibprozess {
+
+    /**
+     * Schreibt die Datei Test01.txt
+     * @throws IOException Fehler beim Schreiben oder Speichern
+     */
+
     public static void schreibeTest01() throws IOException {
         char sep = File.separatorChar;
         try {
@@ -26,6 +32,12 @@ public class Schreibprozess {
             e.printStackTrace();
         }
     }
+
+    /**
+     * Schreibt die Datei Test02.html
+     * @throws IOException Fehler beim Schreiben oder Speichern
+     */
+
     public static void schreibeTest02() throws IOException {
         char sep = File.separatorChar;
         try {

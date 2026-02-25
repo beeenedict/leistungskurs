@@ -4,9 +4,6 @@ import blatt14.MultiArrays;
 import blatt14.Simulationen;
 import blatt14.Steine;
 import schisch_visualizer.SchischVisualizer;
-
-import java.util.Arrays;
-import java.util.Locale;
 import java.util.Scanner;
 
 public class SpielDesLebens {

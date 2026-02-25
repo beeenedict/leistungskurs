@@ -188,7 +188,7 @@ public class Labyrinth {
     }
 
     public static void main(String[] args) {
-        System.out.println(labyrinthSimulation(4));
+        System.out.println(istMoeglich(5));
         sv.start();
     }
 }

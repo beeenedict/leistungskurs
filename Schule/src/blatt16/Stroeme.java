@@ -7,6 +7,12 @@ import java.io.*;
 
 public class Stroeme {
 
+    /**
+     * Liest eine Datei in vorgeschriebenem Format aus und erstellt
+     * @param fileName String
+     * @return char[][]
+     */
+
     public static char[][] readCharArray(String fileName) {
         char c = File.separatorChar;
         char[][] arr = new char[0][0];
@@ -48,6 +54,11 @@ public class Stroeme {
         }
         return arr;
     }
+
+    /**
+     * Liest eine Datei in vorgeschriebenem Format aus und erstellt
+     * @param fileName String
+     */
 
     public static void writeCharArray(String fileName, char[][] arr) {
         char c = File.separatorChar;
