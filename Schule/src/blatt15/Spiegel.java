@@ -379,7 +379,7 @@ public class Spiegel {
     }
 
     public static void main(String[] args) {
-        zufallSpiegel(0.3);
+        zufallSpiegelSchwer(0.3);
         zufallZiele(0.2);
         spiegelSimulation(2, 0.5, 5000, false);
         sv.start();

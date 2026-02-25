@@ -208,7 +208,6 @@ public class Simulationen {
         y++;
         x++;
         if ((x >= arr.length || y >= arr[x].length) && !rand) {
-            System.out.println("o");
             return '-';
         }
         if (rand && x >= arr.length) {
@@ -233,7 +232,6 @@ public class Simulationen {
         y++;
         x--;
         if ((x < 0 || y >= arr[x].length) && !rand) {
-            System.out.println("w");
             return '-';
         }
         if (rand && x < 0) {
