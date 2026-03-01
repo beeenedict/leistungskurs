@@ -9,6 +9,15 @@ public class Waldentwicklung {
     static SchischVisualizer sv = new SchischVisualizer();
     static char[][] wald;
 
+    /**
+     * Simuliert die Waldentwicklung bei einem Waldbrand auf der Fläche x * y
+     * @param schritte int Anz. Generationen
+     * @param x int
+     * @param y int
+     * @param p double Nachwachswahrscheinlichkeit
+     * @param q double Brandwahrscheinlichkeit
+     */
+
     public static void waldentwicklung (int schritte, int x, int y, double p, double q) {
         wald = MultiArrays.createEmpty2DCharArray(x, y);
         char[][] waldAlt;
@@ -47,7 +56,11 @@ public class Waldentwicklung {
     }
 
     public static void main(String[] args) {
-        waldentwicklung(8000, 100, 100, 0.003, 0.0001);
+        waldentwicklung(1000, 100, 100, 0.002, 0.0001);
         sv.start();
     }
+
+    /*
+    Zustandsmenge Q = {leer, ausgewachsen, brennend}
+     */
 }
