@@ -1,6 +1,5 @@
 package blatt17;
 
-import blatt13.Zufall;
 import blatt14.MultiArrays;
 import blatt14.Simulationen;
 import schisch_visualizer.SchischVisualizer;

@@ -23,7 +23,7 @@ public class Ackermann {
 
     public static void main(String[] args) {
         long start = System.currentTimeMillis();
-        System.out.println(ackermann(0,0));
+        System.out.println(ackermann(4,1));
         long end = System.currentTimeMillis();
         long dur = end - start;
         System.out.println(dur + " ms");
