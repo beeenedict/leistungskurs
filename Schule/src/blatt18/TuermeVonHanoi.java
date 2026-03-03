@@ -81,6 +81,7 @@ public class TuermeVonHanoi {
                 }
                 stab2[erster2] = 0;
             }
+
             z++;
             turmUmbau();
         }
