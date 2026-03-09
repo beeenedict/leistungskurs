@@ -126,6 +126,7 @@ public class GameOfLife {
      */
 
     public static void initRandom(double c) {
+        Simulationen.fuellen(welt, '1', 1);
         Simulationen.fuellen(welt, '0', '1', c);
         sv.step(welt);
     }
@@ -209,8 +210,8 @@ public class GameOfLife {
     }
 
     public static void main(String[] args) {
-        initChaos(2);
-        simulation(1000, false);
+        initRandom(0.4);
+        simulation(200, false);
         sv.start();
     }
 }
