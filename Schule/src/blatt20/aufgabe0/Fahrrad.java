@@ -1,4 +1,4 @@
-package blatt20_aufgabe0;
+package blatt20.aufgabe0;
 
 public class Fahrrad {
     String marke;
