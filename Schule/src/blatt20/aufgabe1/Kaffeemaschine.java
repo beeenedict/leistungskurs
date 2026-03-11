@@ -1,5 +1,7 @@
 package blatt20.aufgabe1;
 
+import blatt13.Zufall;
+
 public class Kaffeemaschine {
 
     final int BOHNEN_MAX = 350;
@@ -11,7 +13,7 @@ public class Kaffeemaschine {
     final double[] DRECK_MAX = new double[]{0.5, 0.75, 0.9};
     double dreck;
 
-    final int KAFFEESATZ_MAX = 100;
+    final int KAFFEESATZ_MAX = 600;
     double kaffeesatz;
 
     public void bohnenAuffuellen() {
@@ -93,6 +95,7 @@ public class Kaffeemaschine {
         System.out.println("Genießen Sie Ihren Kaffee, es könnte Ihr letzter sein.");
         System.out.println();
         System.out.println("- Kaffee -");
+        System.out.println("Größe: " + menge);
         System.out.println("Intensität: " + intens + " / 10");
         System.out.println("Temperatur: perfekt");
         System.out.println();
@@ -104,9 +107,9 @@ public class Kaffeemaschine {
         System.out.println();
     }
 
-    public void kaffeeSlotMachine(int menge, int intens, int anz) {
+    public void kaffeeSlotMachine(int anz) {
         for (int i = 0; i <= anz; i++) {
-            this.kaffeeZiehen(menge, intens);
+            this.kaffeeZiehen(Zufall.zufallGanz(1, 10), Zufall.zufallGanz(10, 200));
         }
     }
 
@@ -118,7 +121,7 @@ public class Kaffeemaschine {
         k.bohnenAuffuellen();
         k.wasserAuffuellen();
         k.kaffeesatzLeeren();
-        k.kaffeeZiehen(10, 1);
-        k.kaffeeSlotMachine(10, 1, 100);
+        //k.kaffeeZiehen(10, 1);
+        k.kaffeeSlotMachine(30);
     }
 }
