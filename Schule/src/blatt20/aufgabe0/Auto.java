@@ -1,12 +1,12 @@
 package blatt20.aufgabe0;
 
 public class Auto {
-    String marke;
-    String modell;
+    private String marke;
+    private String modell;
 
-    int tank;
-    int geschwindigkeit;
-    int kilometerstand;
+    private int tank;
+    private int geschwindigkeit;
+    private int kilometerstand;
 
     void beschleunigen(int v) {
         this.geschwindigkeit += v;
@@ -34,6 +34,43 @@ public class Auto {
         this.tank = a.tank;
         this.geschwindigkeit = a.geschwindigkeit;
         this.kilometerstand = a.kilometerstand;
+    }
+
+    public int getTank() {
+        return this.tank;
+    }
+    public void setTank(int tank) {
+        this.tank = Math.max(tank, 0);
+        this.tank = Math.min(this.tank, 100);
+    }
+
+    public int getGeschwindigkeit() {
+        return this.geschwindigkeit;
+    }
+    public void setGeschwindigkeit(int geschwindigkeit) {
+        this.geschwindigkeit = Math.max(geschwindigkeit, 0);
+        this.geschwindigkeit = Math.min(this.geschwindigkeit, 300);
+    }
+
+    public String getMarke() {
+        return marke;
+    }
+    public void setMarke(String marke) {
+        this.marke = marke;
+    }
+
+    public String getModell() {
+        return modell;
+    }
+    public void setModell(String modell) {
+        this.modell = modell;
+    }
+
+    public int getKilometerstand() {
+        return kilometerstand;
+    }
+    public void setKilometerstand(int kilometerstand) {
+        this.kilometerstand = Math.max(kilometerstand, 0);
     }
 
     public Auto(String marke, String modell, int tank, int geschwindigkeit, int kilometerstand) {
