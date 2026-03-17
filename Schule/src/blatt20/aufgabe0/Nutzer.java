@@ -78,7 +78,7 @@ public class Nutzer {
     }
 
     /**
-     * Gibt das Guthaben zurück
+     * Gibt das Guthaben zurück.
      * @return int
      */
 
