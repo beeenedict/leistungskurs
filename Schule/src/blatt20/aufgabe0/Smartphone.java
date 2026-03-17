@@ -7,13 +7,21 @@ public class Smartphone {
     private int akkustand;
     private int preis;
     private int speicherplatz;
+    private int helligkeit;
+    private int lautstaerke;
+    private int displaygroesse;
+    private String betriebssystem;
 
-    public Smartphone(int speicherplatz, int preis, String modell, String marke) {
-        this.speicherplatz = speicherplatz;
-        this.preis = preis;
+    public Smartphone(String modell, int preis, int speicherplatz, int helligkeit, int lautstaerke, int displaygroesse, String betriebssystem, String marke) {
         this.modell = modell;
-        this.marke = marke;
         this.akkustand = 100;
+        this.preis = preis;
+        this.speicherplatz = speicherplatz;
+        this.helligkeit = 100;
+        this.lautstaerke = 50;
+        this.displaygroesse = displaygroesse;
+        this.betriebssystem = betriebssystem;
+        this.marke = marke;
     }
 
     public int getAkkustand() {
@@ -42,7 +50,22 @@ public class Smartphone {
         setAkkustand(this.akkustand - l);
     }
 
-    void laden(int l) {
+    void akkuLaden(int l) {
         setAkkustand(this.akkustand + l);
     }
+
+    boolean istAkkuLeer() {
+        return this.akkustand == 0;
+    }
+
+    boolean hatGenugSpeicher(double size) {
+        return this.speicherplatz > size;
+    }
+
+    void appInstallieren(int size) {
+        if (hatGenugSpeicher(size)) {
+            this.speicherplatz -= size;
+        }
+    }
 }
+
