@@ -1,7 +1,6 @@
 package blatt20.aufgabe0;
 
 import blatt13.Zufall;
-
 import java.util.Date;
 
 public class Nutzer {
@@ -68,7 +67,7 @@ public class Nutzer {
     public void gutscheinEinloesen(int code) {
         if (this.istAngemeldet) {
             if (code > 0 && code < 999999) {
-                this.guthaben += Zufall.zufallGanz(1000);
+                this.guthaben += Zufall.zufallGanz(1000);       //TODO: Möglicherweise keine zufällige Anzahl and Guthaben zuweisen
             } else {
                 System.out.println("Dieser Code ist nicht gültig.");
             }
@@ -76,6 +75,8 @@ public class Nutzer {
             System.out.println("Sie sind nicht angemeldet.");
         }
     }
+
+    //Super!
 
     /**
      * Gibt das Guthaben zurück.
@@ -88,6 +89,7 @@ public class Nutzer {
         } else {
             System.out.println("Sie sind nicht angemeldet.");
             return -1;
+            //Nichts auszusetzen!
         }
     }
 }

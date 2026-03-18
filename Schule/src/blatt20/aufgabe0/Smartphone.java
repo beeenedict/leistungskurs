@@ -1,5 +1,7 @@
 package blatt20.aufgabe0;
 
+import java.util.Objects;
+
 public class Smartphone {
 
     private String marke;
@@ -66,6 +68,13 @@ public class Smartphone {
         if (hatGenugSpeicher(size)) {
             this.speicherplatz -= size;
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Smartphone that)) return false;
+        return preis == that.preis && speicherplatz == that.speicherplatz && displaygroesse == that.displaygroesse && Objects.equals(marke, that.marke) && Objects.equals(modell, that.modell) && Objects.equals(betriebssystem, that.betriebssystem);
     }
 }
 

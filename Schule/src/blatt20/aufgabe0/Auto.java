@@ -36,6 +36,14 @@ public class Auto {
         this.kilometerstand = a.kilometerstand;
     }
 
+    public Auto(String marke, String modell, int tank, int geschwindigkeit, int kilometerstand) {
+        this.marke = marke;
+        this.modell = modell;
+        this.tank = tank;
+        this.geschwindigkeit = geschwindigkeit;
+        this.kilometerstand = kilometerstand;
+    }
+
     public int getTank() {
         return this.tank;
     }
@@ -73,11 +81,11 @@ public class Auto {
         this.kilometerstand = Math.max(kilometerstand, 0);
     }
 
-    public Auto(String marke, String modell, int tank, int geschwindigkeit, int kilometerstand) {
-        this.marke = marke;
-        this.modell = modell;
-        this.tank = tank;
-        this.geschwindigkeit = geschwindigkeit;
-        this.kilometerstand = kilometerstand;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Auto)) return false;
+        Auto a = (Auto) o;
+        return this.marke.equals(a.marke) && this.modell.equals(a.modell);
     }
 }
