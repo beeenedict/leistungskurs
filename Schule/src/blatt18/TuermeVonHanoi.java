@@ -48,40 +48,6 @@ public class TuermeVonHanoi {
                     break;
                 }
             }
-
-            if ((stab3[erster3] == 0) || (stab1[erster1] <  stab3[erster3])) {
-                if (stab3[erster3] != 0) {
-                    stab3[erster3 - 1] = stab1[erster1];
-                } else {
-                    stab3[erster3] = stab1[erster1];
-                }
-                stab1[erster1] = 0;
-            }
-            else if ((stab2[erster2] == 0) || (stab1[erster1] <  stab2[erster2])) {
-                if (stab2[erster2] != 0) {
-                    stab2[erster2 - 1] = stab1[erster1];
-                } else {
-                    stab2[erster2] = stab1[erster1];
-                }
-                stab1[erster1] = 0;
-            }
-            else if ((stab2[erster2] == 0) || stab3[erster3] <  stab2[erster2]) {
-                if (stab2[erster2] != 0) {
-                    stab2[erster2 - 1] = stab3[erster3];
-                } else {
-                    stab2[erster2] = stab3[erster3];
-                }
-                stab3[erster3] = 0;
-            }
-            else if ((stab3[erster3] == 0) || stab2[erster2] < stab3[erster3]) {
-                if (stab3[erster3] != 0) {
-                    stab3[erster3 - 1] = stab2[erster2];
-                } else {
-                    stab3[erster3] = stab2[erster2];
-                }
-                stab2[erster2] = 0;
-            }
-
             z++;
             turmUmbau();
         }
