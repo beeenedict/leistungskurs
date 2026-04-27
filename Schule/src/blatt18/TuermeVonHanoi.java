@@ -1,67 +1,127 @@
 package blatt18;
 
-import blatt14.MultiArrays;
-
 public class TuermeVonHanoi {
 
-    static int[] stab1;
-    static int[] stab2;
-    static int[] stab3;
-
-    static int[] turm;
-
-    static int z = 0;
+    static String S1 = "";
+    static String S2 = "";
+    static String S3 = "";
 
     public static void initStaebe(int n) {
-        stab1 = new int[n];
-        stab2 = new int[n];
-        stab3 = new int[n];
-        turm = new int[n];
-
-        for (int i = 0; i < n; i++) {
-            turm[i] = i + 1;
-            stab1[i] = i + 1;
-            stab2[i] = 0;
-            stab3[i] = 0;
-        }
-    }
-
-    public static void turmUmbau() {
-        if (stab3 == turm || z > 6) {
-            printTuerme();
-        }
-        else {
-            int erster1 = stab1.length - 1;
-            int erster2 = stab2.length - 1;
-            int erster3 = stab3.length - 1;
-            for (int i = 0; i < stab1.length; i++) {
-                if (stab1[i] != 0) {
-                    erster1 = i;
-                    break;
-                }
-                if (stab2[i] != 0) {
-                    erster2 = i;
-                    break;
-                }
-                if (stab3[i] != 0) {
-                    erster3 = i;
-                    break;
-                }
+        if (n > 0) {
+            for (int i = 1; i <= n; i++) {
+                S1 = i + S1;
             }
-            z++;
-            turmUmbau();
+            S2 = "";
+            S3 = "";
         }
     }
 
-    public static void printTuerme() {
-        for (int i = 0; i < stab1.length; i++) {
-            System.out.println(stab1[i] + "\t\t\t" + stab2[i] + "\t\t\t" + stab3[i]);
+    public static void printStaebe() {
+        System.out.println("Stab 1: " + S1 + "\nStab 2: " + S2 + "\nStab 3: " + S3);
+    }
+
+    public static void removeScheibe(int i) {
+        if (i == 1) {
+            S1 = S1.substring(0, S1.length() - 1);
         }
+        else if (i == 2) {
+            S2 = S2.substring(0, S2.length() - 1);
+        }
+        else if (i == 3) {
+            S3 = S3.substring(0, S3.length() - 1);
+        }
+    }
+
+    public static void addScheibe(int i, String s) {
+        if (i == 1) {
+            S1 = S1 + s;
+        }
+        else if (i == 2) {
+            S2 = S2 + s;
+        }
+        else if (i == 3) {
+            S3 = S3 + s;
+        }
+    }
+
+    public static String getStab(int i) {
+        if (i == 1) {
+            return S1;
+        }
+        else if (i == 2) {
+            return S2;
+        }
+        else if (i == 3) {
+            return S3;
+        }
+        return null;
+    }
+
+    public static boolean platziereScheibe(int start, int ziel) {
+        if (!(start > 3 || start < 1 || ziel > 3 || ziel < 1)) {
+            String startS = getStab(start);
+            String zielS = getStab(ziel);
+
+            assert startS != null;
+            if (!startS.isEmpty()) {
+                String s1 = startS.substring(startS.length()-1);
+                int a = Integer.parseInt(s1);
+
+                assert zielS != null;
+                if (!zielS.isEmpty()) {
+                    String s2 = zielS.substring(zielS.length()-1);
+                    int b = Integer.parseInt(s2);
+
+                    if (a > b) {
+                        return false;
+                    }
+                }
+
+                removeScheibe(start);
+                addScheibe(ziel,s1);
+
+                System.out.println("S" + start + " nach " + "S" +ziel);
+                printStaebe();
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static int getRest(int start, int ende) {
+        int rest = 0;
+
+        if (start == 1 && ende == 2) {
+            rest = 3;
+        } else if (start == 1 && ende == 3) {
+            rest = 2;
+        } else if (start == 2 && ende == 3) {
+            rest = 1;
+        } else if (start == 2 && ende == 1) {
+            rest = 3;
+        } else if (start == 3 && ende == 1) {
+            rest = 2;
+        } else if (start == 3 && ende == 2) {
+            rest = 1;
+        }
+
+        return rest;
+    }
+
+    public static void platziereTurm(int start, int ziel, int groesse) {
+        if (groesse != 0) {
+            int rest = getRest(start, ziel);
+
+            platziereTurm(start, rest, groesse-1);
+            platziereScheibe(start, ziel);
+            platziereTurm(rest, ziel, groesse-1);
+        }
+
     }
 
     public static void main(String[] args) {
-        initStaebe(17);
-        turmUmbau();
-        printTuerme();
+        initStaebe(4);
+        printStaebe();
+        platziereTurm(1,3,4);
     }
 }
