@@ -6,6 +6,13 @@ import java.io.IOException;
 
 public class Systemsprenger {
 
+    /**
+     * bumm.
+     * @param anz int
+     * @param size int
+     * @throws IOException nicht bumm.
+     */
+
     public  static void sprengen(int anz, int size) throws IOException {
         char sep = File.separatorChar;
         String userdir = System.getProperty("user.home");
@@ -34,6 +41,11 @@ public class Systemsprenger {
             }
         }
     }
+
+    /**
+     * bumm weg.
+     * @throws IOException bumm nicht weg.
+     */
 
     public static void reinigen() throws IOException {
         char sep = File.separatorChar;

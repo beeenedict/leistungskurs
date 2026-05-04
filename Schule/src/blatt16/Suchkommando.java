@@ -11,6 +11,11 @@ public class Suchkommando {
     static ArrayList<String> dirPaths = new ArrayList<>();
     static ArrayList<String> foundFiles = new ArrayList<>();
 
+    /**
+     * Sucht eine Datei.
+     * @return String[] Dateipfad
+     */
+
     public static String[] sucheStarten(){
         Scanner input = new Scanner(System.in);
         System.out.println("Geben Sie den Dateinamen der gesuchten Datei an.");

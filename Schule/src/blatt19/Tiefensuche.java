@@ -1,5 +1,7 @@
 package blatt19;
 
+import blatt14.MultiArrays;
+import blatt14.Simulationen;
 import blatt16.Stroeme;
 import schisch_visualizer.SchischVisualizer;
 
@@ -11,6 +13,29 @@ public class Tiefensuche {
 
     public static void initLabyrinth(int n) {
         labyrinth = leseLabyrinth(n);
+        sv.step(labyrinth);
+    }
+
+    public static int getX() {
+        for (int i = 0; i < labyrinth.length; i++) {
+            for (int j = 0; j < labyrinth[i].length; j++) {
+                if (labyrinth[i][j] == '9') {
+                    return i;
+                }
+            }
+        }
+        return 0;
+    }
+
+    public static int getY() {
+        for (int i = 0; i < labyrinth.length; i++) {
+            for (int j = 0; j < labyrinth[i].length; j++) {
+                if (labyrinth[i][j] == '9') {
+                    return j;
+                }
+            }
+        }
+        return 0;
     }
 
     public static char[][] leseLabyrinth(int n) {
@@ -22,20 +47,45 @@ public class Tiefensuche {
         }
     }
 
-    public static void tiefensuche(int x, int y) {
+    public static int tiefensuche(int x, int y) {
+        char[][] labyAlt = MultiArrays.copy2DcharArray(labyrinth);
 
-    }
-
-    public static boolean[] erhalteWege(int x, int y) {
-        boolean[] wege =  new boolean[4];
-
-        if (x > 0 && - 1 == '0') {
-
+        if (labyAlt[x+1][y] == '0') {
+            labyrinth[x+1][y] = 'P';
+        } if (labyAlt[x-1][y] == '0') {
+            labyrinth[x-1][y] = 'P';
+        } if (labyAlt[x][y+1] == '0') {
+            labyrinth[x][y+1] = 'P';
+        } if (labyAlt[x][y-1] == '0') {
+            labyrinth[x][y-1] = 'P';
         }
-        if (y > 0) {}
+        labyrinth[x][y] = '4';
 
-        return wege;
+        sv.step(labyrinth);
+
+        if (MultiArrays.istIdentisch(labyAlt, labyrinth)) {
+            return 0;
+        }
+
+        labyAlt = MultiArrays.copy2DcharArray(labyrinth);
+
+        for (int i = 1; i < labyrinth.length - 1; i++) {
+            for (int j = 1; j < labyrinth[i].length - 1; j++) {
+                if (labyAlt[i][j] == 'P') {
+                    if (labyrinth[i+1][j] == '7' || labyrinth[i-1][j] == '7' || labyrinth[i][j+1] == '7' || labyrinth[i][j-1] == '7') {
+                        return 0;
+                    }
+                    x = i;
+                    y = j;
+                }
+            }
+        }
+        return tiefensuche(x, y);
     }
 
-    public static void main(String[] args) {}
+    public static void main(String[] args) {
+        initLabyrinth(5);
+        tiefensuche(getX(), getY());
+        sv.start();
+    }
 }

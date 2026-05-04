@@ -11,6 +11,12 @@ import java.util.Scanner;
 public class Labyrinth {
     static SchischVisualizer sv = new SchischVisualizer();
 
+    /**
+     * Liest das Labyrinth n aus.
+     * @param n int
+     * @return char[][]
+     */
+
     public static char[][] leseLabyrinth(int n) {
         if (n < 10) {
             return Stroeme.readCharArray("laby0" + n + ".txt");
@@ -19,6 +25,12 @@ public class Labyrinth {
             return Stroeme.readCharArray("laby" + n + ".txt");
         }
     }
+
+    /**
+     * Findet den Spieler.
+     * @param arr char[][]
+     * @return int[] Position des Spielers
+     */
 
     public static int[] findeSpieler(char[][] arr) {
         int[] spielerPos = new int[2];
@@ -34,6 +46,12 @@ public class Labyrinth {
         return spielerPos;
     }
 
+    /**
+     * Bestimmt die Richtung, die der Spieler einschlägt.
+     * @param sicht char[]
+     * @return int richtung
+     */
+
     public static int ersteRichtung(char[] sicht) {
         char[] prioritaet = new char[]{'7', '0', '8', '^', '>', 'v', '<'};
         for (int i = 0; i < prioritaet.length; i++) {
@@ -45,6 +63,13 @@ public class Labyrinth {
         }
         return -1;
     }
+
+    /**
+     * Platziert den Spieler
+     * @param r int richtung
+     * @param spielerPos int[] pos
+     * @param feld char[][]
+     */
 
     public static void spielerPlatzieren(int r, int[] spielerPos, char[][] feld) {
         switch (r) {
@@ -63,6 +88,13 @@ public class Labyrinth {
         feld[spielerPos[0]][spielerPos[1]] = 'P';
     }
 
+    /**
+     * Zählt die Anzahl der Felder mit dem Wert c
+     * @param feld char[][]
+     * @param c char
+     * @return int
+     */
+
     public static int charZaehlen(char[][] feld, char c) {
         int anz = 0;
 
@@ -75,6 +107,12 @@ public class Labyrinth {
         }
         return anz;
     }
+
+    /**
+     * Simuliert die Labyrinthsuche
+     * @param n int
+     * @return int anz Schritte
+     */
 
     public static int labyrinthSimulation(int n) {
         char[][] labyrinth = leseLabyrinth(n);
@@ -151,6 +189,12 @@ public class Labyrinth {
         }
         return schritte;
     }
+
+    /**
+     * Prpüft, ob das Labyrinth möglich ist.
+     * @param n int
+     * @return boolean
+     */
 
     public static boolean istMoeglich(int n) {
         char[][] labyrinth = leseLabyrinth(n);
