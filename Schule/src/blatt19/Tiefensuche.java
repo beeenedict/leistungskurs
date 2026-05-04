@@ -61,12 +61,6 @@ public class Tiefensuche {
         }
         labyrinth[x][y] = '4';
 
-        sv.step(labyrinth);
-
-        if (MultiArrays.istIdentisch(labyAlt, labyrinth)) {
-            return 0;
-        }
-
         labyAlt = MultiArrays.copy2DcharArray(labyrinth);
 
         for (int i = 1; i < labyrinth.length - 1; i++) {
@@ -75,12 +69,11 @@ public class Tiefensuche {
                     if (labyrinth[i+1][j] == '7' || labyrinth[i-1][j] == '7' || labyrinth[i][j+1] == '7' || labyrinth[i][j-1] == '7') {
                         return 0;
                     }
-                    x = i;
-                    y = j;
+                    return tiefensuche(i, j);
                 }
             }
         }
-        return tiefensuche(x, y);
+        return 0;
     }
 
     public static void main(String[] args) {
