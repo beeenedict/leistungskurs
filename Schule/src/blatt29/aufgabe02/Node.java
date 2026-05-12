@@ -1,4 +1,4 @@
-package blatt29.aufgabe01;
+package blatt29.aufgabe02;
 
 public class Node<T> {
     private T value;
