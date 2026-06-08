@@ -77,7 +77,7 @@ public class Tiefensuche {
     }
 
     public static void main(String[] args) {
-        initLabyrinth(5);
+        initLabyrinth(4);
         tiefensuche(getX(), getY());
         sv.start();
     }
