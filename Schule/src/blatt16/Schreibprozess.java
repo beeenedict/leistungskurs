@@ -19,7 +19,7 @@ public class Schreibprozess {
             if (!dir.exists()) {
                 dir.mkdir();
             }
-            File f = new File(dir.getPath() + sep + "Test01.text");
+            File f = new File(dir.getPath() + sep + "Test01.txt");
             FileWriter fw = new FileWriter(f);
             BufferedWriter bfw = new BufferedWriter(fw);
             bfw.write("Ein sehr kreativer Satz.");

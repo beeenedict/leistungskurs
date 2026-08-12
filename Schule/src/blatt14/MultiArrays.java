@@ -167,6 +167,22 @@ public class MultiArrays {
     }
 
     /**
+     * Kopiert einen gegebenen zweidimensionalen int-Array
+     * @param arr int[][]
+     * @return int[][]
+     */
+
+    public static int[][] copy2DintArray(int[][] arr) {
+        int[][] arrr = new int[arr.length][arr[0].length];
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = 0; j < arr[0].length; j++) {
+                arrr[i][j] = arr[i][j];
+            }
+        }
+        return arrr;
+    }
+
+    /**
      * Kopiert einen gegebenen dreidimensionalen char-Array
      * @param arr char[][]
      * @return char[][]
