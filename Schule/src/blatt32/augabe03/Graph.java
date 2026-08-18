@@ -81,7 +81,7 @@ public class Graph {
         return false;
     }
 
-    public int[][] getAdjazencyMatrix() {
+    public int[][] getAdjazenzmatrix() {
         return blatt14.MultiArrays.copy2DintArray(this.adjazenzmatrix);
     }
 
