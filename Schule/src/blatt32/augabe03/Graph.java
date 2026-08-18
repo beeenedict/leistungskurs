@@ -81,6 +81,8 @@ public class Graph {
         return false;
     }
 
+    /*TODO:getNeighbours */
+
     public int[][] getAdjazenzmatrix() {
         return blatt14.MultiArrays.copy2DintArray(this.adjazenzmatrix);
     }
