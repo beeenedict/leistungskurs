@@ -4,11 +4,13 @@ import blatt28.aufgabe01.Stapel;
 import blatt28.aufgabe01.Warteschlange;
 import blatt32.augabe03.Graph;
 
-import java.util.Stack;
-
 public class GraphSuche {
 
-    public boolean zyklensuche(Graph g) {
+    public static void main(String[] args) {
+
+    }
+
+    public static boolean zyklensuche(Graph g) {
         Stapel<Integer> stack = new Stapel<>();
         boolean zyklus = false;
         int[][] a = g.getAdjazenzmatrix();
@@ -40,7 +42,7 @@ public class GraphSuche {
 
     /*TODO: Ausgabe mit schGraphs*/
 
-    public boolean[] erreichbarkeit(Graph g, int v) {
+    public static boolean erreichbarkeit(Graph g, int v) {
         Warteschlange<Integer> queue = new Warteschlange<>();
         boolean[] erreichbar = new boolean[g.size()];
         int[][] a = g.getAdjazenzmatrix();
@@ -52,20 +54,50 @@ public class GraphSuche {
         erreichbar[v] = true;
         queue.add(v);
 
-        while  (!stack.empty()) {
-            int u = stack.pop();
+        while  (!queue.empty()) {
+            int u = queue.poll();
             for(int i = 0; i < a[u].length; i++) {
                 if(a[u][i] != 0) {
-                    if (visited[i] && !zyklus) {
-                        zyklus = true;
-                    } else {
-                        visited[i] = true;
-                        stack.push(i);
+                    if (!erreichbar[i]) {
+                        queue.add(i);
+                        erreichbar[i] = true;
                     }
                 }
             }
         }
 
-        return zyklus;
+        for (int i = 0; i < erreichbar.length; i++) {
+            if (!erreichbar[i]) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static boolean erreichbarkeit(Graph g, int from, int to) {
+        Warteschlange<Integer> queue = new Warteschlange<>();
+        boolean[] erreichbar = new boolean[g.size()];
+        int[][] a = g.getAdjazenzmatrix();
+
+        for (int i = 0; i < erreichbar.length; i++) {
+            erreichbar[i] = false;
+        }
+
+        erreichbar[from] = true;
+        queue.add(from);
+
+        while  (!queue.empty()) {
+            int u = queue.poll();
+            for(int i = 0; i < a[u].length; i++) {
+                if(a[u][i] != 0) {
+                    if (!erreichbar[i]) {
+                        queue.add(i);
+                        erreichbar[i] = true;
+                    }
+                }
+            }
+        }
+
+        return erreichbar[to];
     }
 }

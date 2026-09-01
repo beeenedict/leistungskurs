@@ -1,6 +1,6 @@
 package blatt32.augabe03;
 
-public class Edge {
+public class Edge implements Comparable<Edge> {
 
     private int from;
     private int to;
@@ -34,5 +34,16 @@ public class Edge {
 
     public void setWeight(int weight) {
         this.weight = weight;
+    }
+
+    @Override
+    public int compareTo(Edge o) {
+        if (this.weight < o.weight) {
+            return -1;
+        }
+        if (this.weight > o.weight) {
+            return 1;
+        }
+        return 0;
     }
 }

@@ -1,14 +1,11 @@
 package blatt32.augabe03;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 
 public class Graph {
 
-    private int[][] adjazenzmatrix = new int[][]{};
+    private int[][] adjazenzmatrix;
 
     public Graph(int v) {
         this.adjazenzmatrix = new int[v][v];
@@ -81,8 +78,6 @@ public class Graph {
         return false;
     }
 
-    /*TODO:getNeighbours */
-
     public int[][] getAdjazenzmatrix() {
         return blatt14.MultiArrays.copy2DintArray(this.adjazenzmatrix);
     }
@@ -126,5 +121,62 @@ public class Graph {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public Graph importGraph(String path) {
+
+        Graph g = null;
+
+        try {
+
+            File f = new File(path);
+            FileReader fw = new FileReader(f);
+            BufferedReader bfr = new BufferedReader(fw);
+
+            int s = Integer.parseInt(bfr.readLine());
+            g = new Graph(s);
+            int a = 1;
+            for (int i = 0; i < g.adjazenzmatrix.length; i++) {
+                for (int j = 0; j < g.adjazenzmatrix[0].length; j++) {
+                    String line = bfr.readLine();
+                    g.adjazenzmatrix[i][j] = Integer.parseInt(line);
+                    System.out.println(line + ' ' + a);
+                    a++;
+                }
+            }
+            bfr.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        this.adjazenzmatrix = g.getAdjazenzmatrix();
+        return g;
+    }
+
+    public Edge[] getKanten() {
+        int e = 0;
+
+        for (int i = 0; i < this.adjazenzmatrix.length; i++) {
+            for (int j = 0; j < this.adjazenzmatrix[0].length; j++) {
+                if (this.adjazenzmatrix[i][j] != 0) {
+                    e++;
+                }
+            }
+        }
+
+        Edge[] edges = new Edge[e];
+
+        e = 0;
+
+        for (int i = 0; i < this.adjazenzmatrix.length; i++) {
+            for (int j = 0; j < this.adjazenzmatrix[0].length; j++) {
+                if (this.adjazenzmatrix[i][j] != 0) {
+                    edges[e] = new Edge(i, j, this.adjazenzmatrix[i][j]);
+                    e++;
+                }
+            }
+        }
+
+        return edges;
     }
 }

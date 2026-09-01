@@ -1,7 +1,5 @@
 package blatt16;
 
-import blatt07.ArbeitMitArrays;
-import blatt14.MultiArrays;
 
 import java.io.*;
 
