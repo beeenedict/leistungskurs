@@ -17,7 +17,7 @@ public class Main {
         System.out.println(blatt32.aufgabe05.GraphSuche.erreichbarkeit(g1, 0, 5));
         sg.start();*/
 
-        MST.kruskalMST(g1);
+        MST.primMST(g1, 0);
 
     }
 }
