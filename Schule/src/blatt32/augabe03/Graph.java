@@ -83,7 +83,7 @@ public class Graph {
     }
 
     public int[] getNeighbours(int v) {
-        ArrayList<Integer> neighboursList = new ArrayList<Integer>();
+        ArrayList<Integer> neighboursList = new ArrayList<>();
 
         for (int i = 0; i < this.adjazenzmatrix[v].length; i++) {
             if (this.adjazenzmatrix[v][i] != 0) {
@@ -178,5 +178,16 @@ public class Graph {
         }
 
         return edges;
+    }
+
+    public Edge[] getKanten(int v) {
+        ArrayList<Edge> edges = new ArrayList<>();
+        for (int i = 0; i < this.size(); i++) {
+            if (this.adjazenzmatrix[v][i] != 0) {
+                edges.add(new Edge(v, i, this.adjazenzmatrix[v][i]));
+            }
+        }
+
+        return edges.toArray(new Edge[edges.size()]);
     }
 }

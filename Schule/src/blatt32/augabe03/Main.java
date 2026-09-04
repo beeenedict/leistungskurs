@@ -1,7 +1,7 @@
 package blatt32.augabe03;
 
 import blatt32.augabe06.MST;
-import schgraphs.SchGraphs;
+import blatt34.aufgabe02.Dijkstra;
 
 public class Main {
 
@@ -18,6 +18,8 @@ public class Main {
         sg.start();*/
 
         MST.primMST(g1, 0);
+
+        Dijkstra[] table = Dijkstra.dijkstra(g1, 1);
 
     }
 }
