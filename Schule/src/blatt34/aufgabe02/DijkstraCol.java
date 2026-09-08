@@ -4,10 +4,10 @@ public class DijkstraCol implements Comparable<DijkstraCol>{
     private int vertex;
     private int from;
     private int distance;
-    private DijkstraCol prev;
+    private int prev;
     private boolean visited;
 
-    public DijkstraCol(int vertex, int from, int distance, DijkstraCol prev, boolean visited) {
+    public DijkstraCol(int vertex, int from, int distance, int prev, boolean visited) {
         this.vertex = vertex;
         this.from = from;
         this.distance = distance;
@@ -39,11 +39,11 @@ public class DijkstraCol implements Comparable<DijkstraCol>{
         this.distance = distance;
     }
 
-    public DijkstraCol getPrev() {
+    public int getPrev() {
         return prev;
     }
 
-    public void setPrev(DijkstraCol prev) {
+    public void setPrev(int prev) {
         this.prev = prev;
     }
 
